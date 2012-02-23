@@ -1,0 +1,24 @@
+# FRom http://www.ukuug.org/events/linux2003/papers/bash_tips
+# Incremental searching with Up and Down is configured in .inputrc
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Old behaviour still available with Ctrl+P and Ctrl+N
+# If that prevents Left and Right from working, fix them like this:
+#"\e[C": forward-char
+#"\e[D": backward-char
+
+# There are other readline-based programs without this feature, so make it only apply in Bash:
+#$if Bash
+#  Space: magic-space
+#$endif
+
+# When listing possible file completions, put / after directory names and * after programs
+set visible-stats on
+
+# Cycling through potential completions is configured in .inputrc
+# List the possible completions when Tab is pressed
+#set show-all-if-ambiguous on
+# Make Meta+S cycle through the list
+#"\M-s": menu-complete
+
