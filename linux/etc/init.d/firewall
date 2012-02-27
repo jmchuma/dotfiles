@@ -1,0 +1,184 @@
+#!/bin/sh
+#
+# start/stop firewall
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+LOOPBACK_IF="lo"
+LOOPBACK_NW="127.0.0.0/8"
+UNPRIV_PORTS="1025:65535"
+
+ALLOWED_INTERFACES="eth0"
+# 22 ssh
+# 3690 svn
+# 9100 printer
+# 51413(TCP) Transmission
+# 80 http
+# 3306 mysql
+# 5432 postgre
+
+# TOMCAT PORTS
+# 8080
+# 8180 ?
+#
+# 
+
+# 389 ldap
+# 20 ftp
+# 123 ntp
+# 139 netbios
+# 443 https
+# 445 netbios
+# 873 rsyncd
+# 1720 gnomemeeting - listening
+# 5000:5016 gnomemeeting - rtp
+# 5020:5023 gnomemeeting - gatekeeper
+# 8080 OpenKM
+# 30000:30010 gnomemeeting - h.245
+# 32959 skype
+ALLOWED_UDP_PORTS="22 80 3690 9100 8080"
+ALLOWED_TCP_PORTS="22 80 3690 9100 8080 51413"
+
+start_firewall () {
+	echo "Starting firewall"
+
+	# Remove any existing rules from all chains
+        iptables -F
+        iptables -F -t nat
+        iptables -F -t mangle
+
+        # Set the default policy to drop
+        iptables -P INPUT   DROP
+        iptables -P OUTPUT  DROP
+        iptables -P FORWARD DROP
+
+        # Remove any pre-existing user-defined chains
+        iptables -X
+        iptables -X -t nat
+        iptables -X -t mangle
+
+        # create chains for http traffic (buleitor) LO COMENTO (vicente)
+	
+        #iptables -N WebIn    # Creamos la cadena WebIn.
+	#iptables -N WebOut   # Idem para WebOut.
+
+	#iptables -A WebIn -j ACCEPT   # Cuando algo pase por la cadena "WebIn"
+	                              # lo dejaremos pasar sin más (regla de contabilidad).
+	#iptables -A WebIn -j DROP -s 80.34.57.9
+
+	#iptables -A WebOut -j ACCEPT  # Idem para WebOut.
+	#iptables -A INPUT -p tcp --dport 80 -j WebIn
+	#iptables -A OUTPUT -p tcp --sport 80 -j WebOut  # Idem pero para el saliente.
+
+        # Permitir acceso a lbackup en el puerto 7937
+	#iptables -A INPUT -j ACCEPT -p tcp --dport 7937 -s 163.117.136.89/32
+	# Permitir acceso a OSIRIS para ASYC
+	#iptables -A INPUT -j ACCEPT -p tcp --dport 2265 -s 163.117.131.42/32
+	# permitir acceso a Pgadmin para Ordena de juanjo
+	#iptables -A INPUT -j ACCEPT -p tcp --dport 5432 -s 163.117.6.17/32
+	#iptables -A INPUT -j ACCEPT -p tcp --dport 5433 -s 163.117.6.17/32
+
+        # Zero counts
+        iptables -Z
+        
+        # Allow unlimited traffic on the loopback interface
+        iptables -A INPUT -i $LOOPBACK_IF -s $LOOPBACK_NW -d $LOOPBACK_NW -j ACCEPT
+        iptables -A OUTPUT -o $LOOPBACK_IF -s $LOOPBACK_NW -d $LOOPBACK_NW -j ACCEPT
+
+	# allow connections to these interfaces
+	for EXTERNAL_INTERFACE in $ALLOWED_INTERFACES; do
+		# grab the ip, netmask and determine network
+		EXTERNAL_IP=$( ifconfig $EXTERNAL_INTERFACE | grep 'inet[^6]' | sed 's/[a-zA-Z:]//g' | awk '{print $1}' )
+		EXTERNAL_NETMASK=$( ifconfig $EXTERNAL_INTERFACE | grep 'inet[^6]' | sed 's/[a-zA-Z:]//g' | awk '{print $3}' )
+		EXTERNAL_NETWORK=$( ipcalc -n $EXTERNAL_IP $EXTERNAL_NETMASK | grep Network | awk '{print $2}' )
+		 echo "external interface"
+		 echo "external ip: $EXTERNAL_IP"
+		 echo "external netmask: $EXTERNAL_NETMASK"
+		 echo "external network: $EXTERNAL_NETWORK"
+
+		# allow outgoing connections
+		#iptables -A OUTPUT -o $EXTERNAL_INTERFACE -s $EXTERNAL_IP -d 0.0.0.0/0 -j ACCEPT
+		iptables -A OUTPUT -s $EXTERNAL_IP -d 0.0.0.0/0 -m state --state NEW,ESTABLISHED,RELATED,INVALID -j ACCEPT 
+
+	        # allow outgoing icmp, also input
+		#iptables -A INPUT -p ICMP -s 0.0.0.0/0 -d $EXTERNAL_IP -j ACCEPT
+		iptables -A OUTPUT -p ICMP -s $EXTERNAL_IP -d 0.0.0.0/0 -j ACCEPT
+
+		# dns-loopups (backup to open unpriv ports)
+		DNS_SERVERS=$( cat /etc/resolv.conf | grep 'nameserver' | awk '{ print $2 }' )
+		for DNS_SERVER in $DNS_SERVERS; do
+			iptables -A INPUT -p UDP -i $EXTERNAL_INTERFACE -s $DNS_SERVER -d $EXTERNAL_IP --sport 53 -j ACCEPT
+		done;
+
+		# open udp on unpriv ports
+		#iptables -A INPUT -p UDP -i $EXTERNAL_INTERFACE -s 0.0.0.0/0 -d $EXTERNAL_IP --dport $UNPRIV_PORTS -j ACCEPT
+
+		# enable trusted
+		iptables -A INPUT -p TCP -i $EXTERNAL_INTERFACE -s 0.0.0.0/0 -d $EXTERNAL_IP -m state --state ESTABLISHED -j ACCEPT
+		
+		# enable allowed machines
+		#iptables -A INPUT -p TCP -i $EXTERNAL_INTERFACE -s 163.117.6.47/32 -d $EXTERNAL_IP -j ACCEPT
+		
+		# allow tcp connections to these ports
+		for PORT in $ALLOWED_TCP_PORTS; do
+			# world connections
+			iptables -A INPUT -p TCP -i lo -s $EXTERNAL_IP -d $EXTERNAL_IP --dport $PORT -j ACCEPT
+			iptables -A INPUT -p TCP -i $EXTERNAL_INTERFACE -s 0.0.0.0/0 -d $EXTERNAL_IP --dport $PORT -j ACCEPT
+
+		done;
+               # allow udp connections to these ports
+                for PORT in $ALLOWED_UDP_PORTS; do
+                        # world connections
+			iptables -A INPUT -p UDP -i lo -s $EXTERNAL_IP -d $EXTERNAL_IP --dport $PORT -j ACCEPT
+			iptables -A INPUT -p UDP -i $EXTERNAL_INTERFACE -s 0.0.0.0/0 -d $EXTERNAL_IP --dport $PORT -j ACCEPT
+                done;
+	done;
+	# unquote next line when debugging is needed
+	#iptables -A INPUT -p TCP -j LOG
+
+}
+
+
+
+stop_firewall () {
+	echo "Stopping firewall"
+
+	# Remove any existing rules from all chains
+        iptables -F
+        iptables -F -t nat
+        iptables -F -t mangle
+
+        # Remove any pre-existing user-defined chains
+        iptables -X
+        iptables -X -t nat
+        iptables -X -t mangle
+
+        # Set the default policy to accept
+        iptables -P INPUT   ACCEPT
+        iptables -P OUTPUT  ACCEPT
+        iptables -P FORWARD ACCEPT
+
+}
+
+
+case "$1" in
+	start)
+		start_firewall
+		echo 'done'
+		;;
+	stop)
+		stop_firewall
+		echo 'done'
+		;;
+	restart)
+		stop_firewall
+		start_firewall
+		echo 'done'
+		;;
+	*)
+		echo "Usage: /etc/init.d/firewall {start|restart|stop}"
+esac
+
+exit 0
+
+

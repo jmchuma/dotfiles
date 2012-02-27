@@ -1,0 +1,54 @@
+# gmrun configuration file
+# gmrun is (C) Mihai Bazon, <mishoo@infoiasi.ro>
+# GPL v2.0 applies
+
+# Set terminal
+Terminal = x-terminal-emulator
+TermExec = ${Terminal} -e
+# These commands will always be run in ${TermExec}
+AlwaysInTerm = ssh telnet ncftp ftp lynx mc vi vim pine centericq perldoc man w3m links mutt emacs editor reportbug
+
+# Set window geometry (except height)
+Width = 400
+
+# History size
+History = 256
+
+# Shows last history line selected when invoked
+ShowLast = 1
+
+# Show files starting with '.'
+# Default is 0 (off), set it to 1 if you want "hidden" files to show up
+# in the completion window
+ShowDotFiles = 0
+
+# Timeout (in milliseconds) after which gmrun will simulate a TAB press
+# Set this to 0 if don't like this feature.
+TabTimeout = 0
+
+# URL handlers
+# If the entered text is "http://www.google.com" then:
+#   - %u gets replaced with the whole URL ("http://www.google.com")
+#   - %s gets replaced with "//www.google.com".  This is useful for URL-s
+#     like "man:printf" --> %s will get replaced with "printf"
+URL_http = x-www-browser '%u'
+URL_mailto = gnome-moz-remote '%u'
+URL_man = ${TermExec} man '%s'
+URL_info = ${TermExec} info '%s'
+URL_pd = ${TermExec} perldoc '%s'
+URL_readme = ${TermExec} 'sensible-pager /usr/share/doc/%s/README'
+URL_debreadme = ${TermExec} 'sensible-pager /usr/share/doc/%s/README.Debian'
+URL_changelog = ${TermExec} 'sensible-pager /usr/share/doc/%s/changelog.gz'
+URL_debchangelog = ${TermExec} 'sensible-pager /usr/share/doc/%s/changelog.Debian.gz'
+URL_info = ${TermExec} 'info %s'
+URL_sh = sh -c '%s'
+URL_term = ${TermExec} sh -c "%s; read -p Hit\ enter\ to\ close\ window... throwaway"
+
+# Extention handlers
+# If you enter in a simple filename, ie: '/usr/share/doc/foo/index.html',
+#  it will run the given app with the entered text as %s
+EXT:html,htm = sh -c 'file=%s && run-mailcap "$file" || sensible-browser "$file"'
+EXT:txt,cc,cpp,h,java,epl,tex,latex,js,css,xml,xsl,am = ${TermExec} sensible-editor %s
+EXT:doc,rtf = sh -c 'file=%s && run-mailcap "$file" || { [ -n "$GNOME_DESKTOP_SESSION_ID" ] && AbiWord "$file"; } || ooffice "$file"'
+EXT:ps,eps = sh -c 'file=%s && run-mailcap "$file" || { [ -n "$GNOME_DESKTOP_SESSION_ID" ] && ggv "$file"; } || { [ -n "$KDE_FULL_SESSION" ] && kghostview "$file"; } || gv "$file"'
+EXT:pdf = sh -c 'file=%s && run-mailcap "$file" || { [ -n "$GNOME_DESKTOP_SESSION_ID" ] && evince "$file"; } || { [ -n "$KDE_FULL_SESSION" ] && kpdf "$file"; } || xpdf "$file"'
