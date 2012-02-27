@@ -1,0 +1,2 @@
+# Este script muestra los 10 comandos mas unsados en la shell
+history | awk '{print $2}' | awk 'BEGIN {FS="|"} {print $1}' | sort | uniq -c | sort -nr | head -10

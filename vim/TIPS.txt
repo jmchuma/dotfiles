@@ -1,0 +1,37 @@
+also - use CTRL-v CTRL-m to get a newline - will look like ^M but match newlines.
+
+set paste
+help bomb
+set bomb
+set nobomb
+
+
+* serchs for the word under the cursor
+
+:hide edit foo.txt -> hides current buffer and opens foo.txt for editing
+:buffes -> list buffers
+:buffer <num> -> opens buffer number <num>
+:sbuffer <num> -> opens buffer in new window
+:bnext		go to next buffer
+:bprevious	go to previous buffer
+:bfirst		go to the first buffer
+:blast		go to the last buffer
+:bdelete <num> -> removes buffers from list
+:edit
+
+
+:next
+:next!
+:wnext
+:previous
+:previous!
+:wprevious
+:args
+:args foo.txt bar.java lala.py
+:last
+:first
+
+:saveas foo.txt -> line :w foo.txt and then :e foo.txt
+:file foo.txt -> changes name but does not write
+
+

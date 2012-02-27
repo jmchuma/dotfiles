@@ -1,0 +1,17 @@
+#!/bin/bash
+# Esto lo unico que hace es darle toques
+# al salvapantallas para que no salte
+
+#i=0
+# Para el bucle infinitp tambien podia haber usado
+# el comando true que hay en /bin. Existe su opuesto,
+# es decir /bin/false
+while [ 1 ]
+do
+   #sleep 14m
+   gnome-screensaver-command -p
+   #echo "Poke number $i" #shows number of pokes
+   #let "i=$i+1" # increases number of pokes
+   #but one line is better than two
+   echo "Poke $((i+=1))"
+done
