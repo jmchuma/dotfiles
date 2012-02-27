@@ -1,0 +1,64 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Modify the PATH here. Maybe u'll ned to run
+# something that it's not on the default PATH.
+# Rewrite this checking for $HOME
+if [ -d ~/bin ] ; then
+   PATH=~/bin:"${PATH}"
+	export PATH
+fi
+
+# for fink
+if [ -f /sw/bin/init.sh ]; then
+    . /sw/bin/init.sh
+fi
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+# Make bash check its window size after a process completes.
+# Updates LINES and COLUMNS if necessary.
+shopt -s checkwinsize
+
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoredups,ignoreboth,erasedups
+
+# Pretty colors for ls output
+LSCOLORS=ExGxFxDxCxegedabagacad
+export LSCOLORS
+
+# For subversion
+svn_info() {
+    local s=
+    if [[ -d ".svn" ]] ; then
+        # add an s (for subversion) and revison number
+        # add a star (*) if the are changes on a versioned file
+        # add an exclamation (!) if a versionde file has disapered
+        # add a plus (+) if there are unversioned files
+        s="(s$(svn info 2>/dev/null |sed -n -e '/^Revisi[oó]n: \([0-9]*\).*$/s//\1/p')\
+$(svn status 2>/dev/null |grep -q -v '^?' && echo -n "*")\
+$(svn status 2>/dev/null |grep -q '^!' && echo -n "!")\
+$(svn status 2>/dev/null |grep -q '^?' && echo -n "+")) "
+    fi
+
+    echo -n "$s"
+}
+
+# Color always on !!!!!
+PS1="\[\e[1;31m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w \[\e[1;37m\]\$(svn_info)\n$\[\e[0m\] "
+PS2='\[\e[1;37m\]>\[\e[0m\] '
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+    xterm*|rxvt*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+        ;;
+    *) ;;
+esac
+
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
