@@ -1,0 +1,9 @@
+#!/bin/bash
+#ifconfig eth0 address 192.168.3.1
+#sudo route add -net 192.169.2.0 netmask 255.255.255.0 dev eth0
+#sudo ifconfig eth0 address 192.168.3.1 netmask 255.255.255.252
+#sudo sysctl -w net.ipv4.ip_forward=1
+sudo ifconfig eth0 inet 192.168.3.1 netmask 255.255.255.252
+sudo sysctl -w net.ipv4.conf.eth0.forwarding=1
+sudo sysctl -w net.ipv4.conf.wlan0.forwarding=1
+sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE

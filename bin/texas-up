@@ -1,0 +1,12 @@
+#!/bin/bash
+#This works
+#sudo ifdown wlan0
+#sudo ifconfig down wlan0
+#sudo ifconfig up wlan0
+sudo iwconfig wlan0 essid "ChanChanWireless" mode Managed channel auto key [3] 30-31-31-32-30 key [3]
+#sudo ifup wlan0
+#Tuve que comentar lo de antes al meter el vigor 510
+#ya que la acx se renombró a wlan1
+#sudo ifdown wlan1
+#sudo iwconfig wlan1 essid "ChanChanWireless" mode Managed channel auto key [3] 30-31-31-32-30 key [3]
+#sudo ifup wlan1

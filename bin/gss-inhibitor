@@ -1,0 +1,38 @@
+#!/bin/bash
+# Este script deshabilita el salvapantallas de Gnome
+# haciendo uso de dbus-send. El salvapantallas solo esta
+# deshabilitado hasta que el script lo vuelve a habilitar o
+# hasta que muere. Entre la llamada de inhabilitar y habilitar
+# se pueden colocar comandos a ejecutar, de esta forma se puede usar
+# el mplayer, xine, etc y evitar que salte el salvapantallas
+# mientras estan en ejecucion.
+# No es necesario inhabilitar Gnome PowerManager ya que este depende de que
+# Gnome ScreenSaver marque la sesion como inactiva. Sin embargo, se deberia usar
+# el Inhibit de PowerManager si deseamos que salte el salvapantallas pero no que
+# el ordenador llegue a hibernar o a apagarse
+#
+# Inhabilitamos salvapantallas
+cookie= dbus-send --session \
+--print-reply \
+--type=method_call \
+--dest=org.gnome.ScreenSaver \
+/org/gnome/ScreenSaver \
+org.gnome.ScreenSaver.Inhibit \
+string:'testing' string:'make a test'
+
+if [ $? -eq 0 ] ; then
+	echo -e "\nThe cookie i got is $cookie"
+fi
+#
+# Volvemos a habilitar salvapantallas
+cookie= dbus-send --session \
+--print-reply \
+--type=method_call \
+--dest=org.gnome.ScreenSaver \
+/org/gnome/ScreenSaver \
+org.gnome.ScreenSaver.UnInhibit \
+uint32:$cookie
+
+if [ $? -eq 0 ] ; then
+	echo
+fi
