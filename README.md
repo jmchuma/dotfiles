@@ -20,7 +20,12 @@ Create a script to install them:
   * Links files to de ones under version control
   * MUST ask if i need to replace them or to rename them
 
-Change git_info in bashrc to use "git status --porcelain"
+Fuse bashrc (common code is common!)
+
+  * if on osx do one thing
+  * if on linux do another
+
+Change "git_info" in bashrc to use "git status --porcelain"
 
 Add whoami in bashrc to check if I'm using
 
