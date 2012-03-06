@@ -11,3 +11,20 @@ here, please let me know.
 
 Enjoy!
 
+
+TODO
+====
+Create a script to install them:
+
+  * must be stored in ~/.dotfiles? NO! Use pwd to get the current path
+  * Links files to de ones under version control
+  * MUST ask if i need to replace them or to rename them
+
+Change git_info in bashrc to use "git status --porcelain"
+
+Add whoami in bashrc to check if I'm using
+
+  * See if "sudo -s" reloads bashrc
+  * I'm a normla user ->  green red?
+  * With have admin privileges -> red?
+

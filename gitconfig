@@ -1,7 +1,27 @@
+# DON'T FORGET TO ADD GITHUB INFO TO EACH REPO CONFIG
 [user]
 	name = Jose M. Chumo Mata
 	email = jmchuma@gmail.com
+[core]
+	editor = vim
+[alias]
+	ci = commit -s
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+	ui = true
+[color "branch"]
+	current = green
+#	local = yellow
+	remote = yellow
+[color "diff"]
+#	meta = yellow bold
+	meta = cyan bold
+#	meta = white bold
+	frag = magenta white bold
+#	frag = yellow bold reverse
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = red
+	untracked = cyan
+#	untracked = white
