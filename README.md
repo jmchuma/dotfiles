@@ -27,7 +27,7 @@ Fuse bashrc (common code is common!)
 
 Change "git_info" in bashrc to use "git status --porcelain"
 
-Add whoami in bashrc to check if I'm using
+Add whoami in bashrc color the prompt
 
   * See if "sudo -s" reloads bashrc
   * I'm a normla user ->  green red?
