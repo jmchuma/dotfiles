@@ -25,3 +25,5 @@
 	changed = red
 	untracked = cyan
 #	untracked = white
+[merge]
+	ff = false
