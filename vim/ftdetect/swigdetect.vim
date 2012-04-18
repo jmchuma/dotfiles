@@ -1,2 +1,1 @@
-au BufRead,BufNewFile *.swg,*.swig,*.i		setf swig
-
+au BufRead,BufNewFile *.{swg,swig,i}	setf swig
