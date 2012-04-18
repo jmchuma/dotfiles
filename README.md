@@ -3,10 +3,11 @@ Config stuff
 
 Just some config I use for some of my computers.
 
-Since there are some bits that are note mine I'm not going to put a
-license on this one, but you can copy whatever you want.
+Since some bits are not originally mine and I don't remember which ones,
+I'm not going to put a license on this one. Nonetheless, I think you can
+safely copy whatever you want.
 
-If any the files here contains your code and you don't want it to be
+If any of the files here contains your code and you don't want it to be
 here, please let me know.
 
 Enjoy!
@@ -20,7 +21,7 @@ Create a script to install them:
   * Links files to de ones under version control
   * MUST ask if i need to replace them or to rename them
 
-Change git_info in bashrc to use "git status --porcelain"
+Change "git_info" in bashrc to use "git status --porcelain"
 
 Add whoami in bashrc color the prompt
 

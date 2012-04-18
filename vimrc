@@ -34,10 +34,11 @@ set incsearch             " use incremental search
 set nowrap                " do not wrap lines
 set visualbell            " visual bell instead of beeping
 " TABS STUFF
-set shiftwidth =4         " number of spaces to use for each step of indent
-set tabstop    =8         " number of spaces that a <Tab> in the file counts for
-set expandtab
-set smarttab
+" TODO set indent style per language
+"set shiftwidth =4         " number of spaces to use for each step of indent
+set tabstop=4         " number of spaces that a <Tab> in the file counts for
+"set expandtab
+"set smarttab
 set title " set window title
 set cursorline " highlight line of cursor
 set showmatch " match opening and closing punctuation together
