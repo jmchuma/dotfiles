@@ -7,11 +7,23 @@
 # Rewrite this checking for $HOME
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
-    export PATH
 elif [ -d ~/Applications/bin ] ; then
     PATH=~/Applications/bin:"${PATH}"
-    export PATH
 fi
+
+# For Git
+if [ -d /usr/local/git/bin ] ; then
+    PATH=/usr/local/git/bin:"${PATH}"
+fi
+
+# Android stuff
+if [ -d ~/Applications/android-sdk-mac_x86/platform-tools ] ; then
+    PATH=~/Applications/android-sdk-mac_x86/platform-tools:"${PATH}"
+fi
+
+#TODO Is it really necessary to check if platform-tools and git/bin exists?
+# If they don't there's no harm done, but the if statemens add a delay.
+export PATH
 
 # For fink. This goes here because it modifies $PATH
 if [ -f /sw/bin/init.sh ]; then
@@ -22,12 +34,6 @@ fi
 [ -z "$PS1" ] && return
 
 if [ "`uname`" == "Linux" ] ; then
-    # If not running interactively, don't do anything
-    [ -z "$PS1" ] && return
-    # Make bash check its window size after a process completes.
-    # Updates LINES and COLUMNS if necessary.
-    shopt -s checkwinsize
-
     # Turn off the bell for console
     setterm -blength 0
 
@@ -36,14 +42,21 @@ if [ "`uname`" == "Linux" ] ; then
 
     # TODO meter $XDG_DATA_* en bashrc
 else # for the time being if only Linux or Darwin for me
+#    MANPATH="${MANPATH}":/Library/Framework/Mono/Versions/Current/man
+    MANPATH="${MANPATH}":/Library/Frameworks/Mono.framework/Versions/Current/share/man
+    export MANPATH
+
+    #CDPATH='.:~:/Users/jmchuma/Uni/current'
+    #export CDPATH
+
     # This is here so I won't need to populate
     # the default instalation of Python with crap
     #if [ -d ~/local/python ] ; then
-    #   PYTHONPATH=~/local/python:"${PYTHONPATH}"
-    #   export PYTHONPATH
+    #    PYTHONPATH=~/local/python:"${PYTHONPATH}"
+    #    export PYTHONPATH
     #elif [ -d ~/Applications/Python ] ; then
-    #   PYTHONPATH="${PYTHONPATH}":~/Applications/Python
-    #   export PYTHONPATH
+    #    PYTHONPATH="${PYTHONPATH}":~/Applications/Python
+    #    export PYTHONPATH
     #fi
 
     # Turn off the bell for console
@@ -94,16 +107,19 @@ fi # end of Darwin stuff
 ##### COMMON STUFF ####
 
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+# ignore lines starting with whitespace
+export HISTCONTROL="ignoreboth:erasedups"
+export HISTIGNORE="&:[bf]g:cd:cd ..:clear:exit:ls:make:pwd:vim"
 
-# see "help shopt" for more info
+# see "help shopt" and shopt section in bash(1) for more info
+# Check window size after a process completes. Update LINES and COLUMNS if necessary.
+shopt -s checkwinsize
 # makes BASH append rather than overwrite history on disk
 shopt -s histappend
-# Make bash check its window size after a process completes.
-# Updates LINES and COLUMNS if necessary.
-shopt -s checkwinsize
+
+# avoids clobberting http://en.wikipedia.org/wiki/Clobbering
+# Use use the >| operator to ignore the noclobber.
+set -o noclobber
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
@@ -147,6 +163,10 @@ git_info() {
             fi
 
             if git status | grep -q '^# Changed but not updated:' ; then
+                a="${a}*"
+            fi
+
+            if git status | grep -q '^# Changes not staged for commit:' ; then
                 a="${a}*"
             fi
 

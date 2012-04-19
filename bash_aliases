@@ -3,17 +3,15 @@
 if [ "$TERM" != "dumb" ]; then
     if [ "`uname`" == "Darwin" ]; then
         alias ls='ls -AFGh'
-
-	alias mytop='top -o cpu -O rsize'
-	alias topCPU='top -o cpu'
-	alias topRM='top -o rsize'
-	alias topVM='top -o vsize'
-
-	alias Preview='open -a Preview'
-	alias VLC='open -a VLC'
-	alias 0xED='open -a 0xED'
-	alias TextEdit='open -a TextEdit'
-	alias Firefox='open -a Firefox'
+        alias mytop='top -o cpu -O rsize'
+        alias topCPU='top -o cpu'
+        alias topRM='top -o rsize'
+        alias topVM='top -o vsize'
+        alias Preview='open -a Preview'
+        alias VLC='open -a VLC'
+        alias 0xED='open -a 0xED'
+        alias TextEdit='open -a TextEdit'
+        alias Firefox='open -a Firefox'
     elif [ "`uname`" == "Linux" ]; then
         alias ls='ls -AFh --color=auto'
         alias pstree='pstree -ca'
@@ -30,6 +28,7 @@ alias mv='mv -i'
 
 alias diff='diff -u'
 alias grep='grep --color'
+alias python='python -t'
 
 #alias gcc='gcc -ansi -g -Wall'
 
