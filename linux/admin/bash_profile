@@ -6,5 +6,5 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-cd "$HOME"
+#cd "$HOME"
 
