@@ -7,17 +7,22 @@
 # Rewrite this checking for $HOME
 if [ -d /sbin ] ; then
     PATH=/sbin:$PATH
-    export PATH
 fi
 
 if [ -d /usr/sbin ] ; then
     PATH=/usr/sbin:$PATH
-    export PATH
 fi
 
 if [ -d ~/bin ] ; then
     PATH=~/bin:$PATH
-    export PATH
+fi
+
+export PATH
+
+# for fink. Makes no sense for Linux but may be needed for
+# OS X scripts.
+if [ -f /sw/bin/init.sh ]; then
+    . /sw/bin/init.sh
 fi
 
 # If not running interactively, don't do anything
@@ -26,16 +31,23 @@ fi
 # Updates LINES and COLUMNS if necessary.
 shopt -s checkwinsize
 
-# Turn off the bell for console
-setterm -blength 0
 
-# Turn off the bell for x
-#xset b off
+if [ "`uname`" == "Linux" ] ; then
+    # Turn off the bell for console
+    setterm -blength 0
+
+    # Turn off the bell for x
+    #xset b off
+else # It's Darwin
+    # Pretty colors for ls output
+    LSCOLORS=ExGxFxDxCxegedabagacad
+    export LSCOLORS
+fi
+
 
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
 
 # For subversion
 svn_info() {
