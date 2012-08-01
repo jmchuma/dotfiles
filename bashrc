@@ -17,8 +17,8 @@ if [ -d /usr/local/git/bin ] ; then
 fi
 
 # Android stuff
-if [ -d ~/Applications/android-sdk-mac_x86/platform-tools ] ; then
-    PATH=~/Applications/android-sdk-mac_x86/platform-tools:"${PATH}"
+if [ -d ~/Applications/android-sdk ] ; then
+    PATH=~/Applications/android-sdk/platform-tools:~/Applications/android-sdk/tools:"${PATH}"
 fi
 
 #TODO Is it really necessary to check if platform-tools and git/bin exists?
@@ -102,6 +102,11 @@ else # for the time being if only Linux or Darwin for me
     # directories, black foreground and red back-ground for setuid executables, etc.
     LSCOLORS=ExGxFxDxCxegedabagacad
     export LSCOLORS
+
+    # Setting PATH for Python 2.7
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+	export PATH
 fi # end of Darwin stuff
 
 ##### COMMON STUFF ####
