@@ -61,3 +61,5 @@ set background=dark
 "colorscheme tango
 colorscheme gotan
 
+filetype plugin indent on
+
