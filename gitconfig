@@ -25,5 +25,6 @@
 	changed = red
 	untracked = cyan
 #	untracked = white
-[merge]
-	ff = false
+# This was not a good idea
+#[merge]
+#	ff = false
