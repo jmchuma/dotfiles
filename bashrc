@@ -7,28 +7,41 @@
 # Rewrite this checking for $HOME
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
-elif [ -d ~/Applications/bin ] ; then
-    PATH=~/Applications/bin:"${PATH}"
 fi
 
 # For Git
-if [ -d /usr/local/git/bin ] ; then
-    PATH=/usr/local/git/bin:"${PATH}"
-fi
+#if [ -d /usr/local/git/bin ] ; then
+#    PATH=/usr/local/git/bin:"${PATH}"
+#fi
 
 # Android stuff
 if [ -d ~/Applications/android-sdk ] ; then
     PATH=~/Applications/android-sdk/platform-tools:~/Applications/android-sdk/tools:"${PATH}"
 fi
 
-#TODO Is it really necessary to check if platform-tools and git/bin exists?
-# If they don't there's no harm done, but the if statemens add a delay.
-export PATH
+# MacTex goodies
+if [ -d /usr/texbin ] ; then
+    PATH=/usr/texbin:"${PATH}"
+fi
+
+# rbenv goodies
+if [ -d ~/.rbenv ]; then
+    PATH="${HOME}/.rbenv/bin:${PATH}"
+    eval "$(rbenv init -)"
+fi
+
+#TODO Is it really necessary to check if platform-tools and
+# git/bin exists? If they don't there's no harm done, but the if
+# statemens add a delay.
+
+# The export is not needed. PATH sticks
+#export PATH
 
 # For fink. This goes here because it modifies $PATH
-if [ -f /sw/bin/init.sh ]; then
-    . /sw/bin/init.sh
-fi
+# I don't think I'll ever use fink again, but just in case…
+#if [ -f /sw/bin/init.sh ]; then
+#    . /sw/bin/init.sh
+#fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -41,10 +54,11 @@ if [ "`uname`" == "Linux" ] ; then
     #xset b off
 
     # TODO meter $XDG_DATA_* en bashrc
-else # for the time being if only Linux or Darwin for me
-#    MANPATH="${MANPATH}":/Library/Framework/Mono/Versions/Current/man
-    MANPATH="${MANPATH}":/Library/Frameworks/Mono.framework/Versions/Current/share/man
-    export MANPATH
+else # for the time being it's only Linux or Darwin for me
+# no moar mokey
+##    MANPATH="${MANPATH}":/Library/Framework/Mono/Versions/Current/man
+#    MANPATH="${MANPATH}":/Library/Frameworks/Mono.framework/Versions/Current/share/man
+#    export MANPATH
 
     #CDPATH='.:~:/Users/jmchuma/Uni/current'
     #export CDPATH
@@ -105,8 +119,12 @@ else # for the time being if only Linux or Darwin for me
 
     # Setting PATH for Python 2.7
     # The orginal version is saved in .bash_profile.pysave
-    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-	export PATH
+    #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    #export PATH
+
+    # Hombrew goodies
+    PATH="/usr/local/bin:${PATH}"
+    . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi # end of Darwin stuff
 
 ##### COMMON STUFF ####
@@ -135,10 +153,11 @@ git_info() {
 
     #if [[ -d ".git" ]] ; then
     git status &> /dev/null
-    # git is buggy and instead of 0 when successful it returns1
-    # change this whenever it's fixed
-    #if [[ $? == 0 ]] ; then
-    if [[ $? == 0 || $? == 1 ]] ; then
+    # git is buggy and instead of 0 when successful it returns 1
+    # change this whenever it's fixed.
+    # Seems to be fixed
+    if [[ $? == 0 ]] ; then
+    #if [[ $? == 0 || $? == 1 ]] ; then
         local d=$(git rev-parse --git-dir 2>/dev/null ) b= r= a=
         if [[ -n "${d}" ]] ; then
             if [[ -d "${d}/../.dotest" ]] ; then
@@ -193,20 +212,20 @@ git_info() {
 }
 
 # For bazaar
-bzr_info() {
-    local s=
-    if [[ -d ".bzr" ]] ; then
-#        bzr info -v
-        #s="(BZR $(bzr status 2>/dev/null |grep -q -v '^(unknown:|added:)' && echo -n "*")\
-        s="(BZR $(bzr status 2>/dev/null |grep -q 'modified' && echo -n "*")\
-$(bzr status 2>/dev/null |grep -q 'added:' && echo -n "+")\
-$(bzr status 2>/dev/null |grep -q 'removed:' && echo -n "-")\
-$(bzr status 2>/dev/null |grep -q 'unknown:' && echo -n "?")\
-$(bzr status 2>/dev/null |grep -q '^!' && echo -n "!")) "
-
-        echo -n "$s"
-    fi
-}
+#bzr_info() {
+#    local s=
+#    if [[ -d ".bzr" ]] ; then
+##        bzr info -v
+#        #s="(BZR $(bzr status 2>/dev/null |grep -q -v '^(unknown:|added:)' && echo -n "*")\
+#        s="(BZR $(bzr status 2>/dev/null |grep -q 'modified' && echo -n "*")\
+#$(bzr status 2>/dev/null |grep -q 'added:' && echo -n "+")\
+#$(bzr status 2>/dev/null |grep -q 'removed:' && echo -n "-")\
+#$(bzr status 2>/dev/null |grep -q 'unknown:' && echo -n "?")\
+#$(bzr status 2>/dev/null |grep -q '^!' && echo -n "!")) "
+#
+#        echo -n "$s"
+#    fi
+#}
 
 # For mercurial
 #hg_info() {
@@ -243,63 +262,6 @@ $(svn status 2>/dev/null |grep -q '^?' && echo -n "+")) "
     fi
 
 }
-# Para que muestre info de svn en el promt
-# TODO review this to see if there something useful
-#ps_scm_f() {
-#    local s=
-#        if [[ -d ".svn" ]] ; then
-#        local r=$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )
-#        s="(r$r$(svn status | grep -q -v '^?' && echo -n "*" ))"
-#    else
-#            local d=$(git rev-parse --git-dir 2>/dev/null ) b= r= a=
-#            if [[ -n "${d}" ]] ; then
-#                if [[ -d "${d}/../.dotest" ]] ; then
-#                if [[ -f "${d}/../.dotest/rebase" ]] ; then
-#                    r="rebase"
-#                    elif [[ -f "${d}/../.dotest/applying" ]] ; then
-#                        r="am"
-#                else
-#                    r="???"
-#                    fi
-#                    b=$(git symbolic-ref HEAD 2>/dev/null )
-#                elif [[ -f "${d}/.dotest-merge/interactive" ]] ; then
-#                r="rebase-i"
-#                b=$(<${d}/.dotest-merge/head-name)
-#            elif [[ -d "${d}/../.dotest-merge" ]] ; then
-#                    r="rebase-m"
-#                    b=$(<${d}/.dotest-merge/head-name)
-#                elif [[ -f "${d}/MERGE_HEAD" ]] ; then
-#                r="merge"
-#                b=$(git symbolic-ref HEAD 2>/dev/null )
-#            elif [[ -f "${d}/BISECT_LOG" ]] ; then
-#                    r="bisect"
-#                    b=$(git symbolic-ref HEAD 2>/dev/null )"???"
-#                else
-#                r=""
-#                b=$(git symbolic-ref HEAD 2>/dev/null )
-#            fi
-#
-#                if git status | grep -q '^# Changed but not updated:' ; then
-#                a="${a}*"
-#            fi
-#
-#                if git status | grep -q '^# Changes to be committed:' ; then
-#                a="${a}+"
-#            fi
-#
-#                if git status | grep -q '^# Untracked files:' ; then
-#                a="${a}?"
-#            fi
-#
-#                b=${b#refs/heads/}
-#            b=${b// }
-#                [[ -n "${r}${b}${a}" ]] && s="(${r:+${r}:}${b}${a:+ ${a}})"
-#        fi
-#    fi
-#        s="${s}${ACTIVE_COMPILER}"
-#    s="${s:+${s} }"
-#        echo -n "$s"
-#}
 
 # working copy info
 # TODO use this to check if which VCS are used and call the apropiate functions
@@ -310,7 +272,8 @@ wc_info() {
 }
 
 # Color always on !!!!!
-PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(bzr_info)\$(git_info)\n$\[\e[0m\] "
+#PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(bzr_info)\$(git_info)\n$\[\e[0m\] "
+PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(git_info)\n$\[\e[0m\] "
 PS2='\[\e[1;37m\]>\[\e[0m\] '
 
 # If this is an xterm set the title to user@host:dir
