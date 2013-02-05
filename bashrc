@@ -2,49 +2,21 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Modify the PATH here. Maybe u'll ned to run
-# something that it's not on the default PATH.
-# Rewrite this checking for $HOME
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
 fi
-
-# For Git
-#if [ -d /usr/local/git/bin ] ; then
-#    PATH=/usr/local/git/bin:"${PATH}"
-#fi
 
 # Android stuff
 if [ -d ~/Applications/android-sdk ] ; then
     PATH=~/Applications/android-sdk/platform-tools:~/Applications/android-sdk/tools:"${PATH}"
 fi
 
-# MacTex goodies
-if [ -d /usr/texbin ] ; then
-    PATH=/usr/texbin:"${PATH}"
-fi
 
 # rbenv goodies
 if [ -d ~/.rbenv ]; then
     PATH="${HOME}/.rbenv/bin:${PATH}"
     eval "$(rbenv init -)"
 fi
-
-#TODO Is it really necessary to check if platform-tools and
-# git/bin exists? If they don't there's no harm done, but the if
-# statemens add a delay.
-
-# The export is not needed. PATH sticks
-#export PATH
-
-# For fink. This goes here because it modifies $PATH
-# I don't think I'll ever use fink again, but just in case…
-#if [ -f /sw/bin/init.sh ]; then
-#    . /sw/bin/init.sh
-#fi
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
 if [ "`uname`" == "Linux" ] ; then
     # Turn off the bell for console
@@ -54,80 +26,23 @@ if [ "`uname`" == "Linux" ] ; then
     #xset b off
 
     # TODO meter $XDG_DATA_* en bashrc
-else # for the time being it's only Linux or Darwin for me
-# no moar mokey
-##    MANPATH="${MANPATH}":/Library/Framework/Mono/Versions/Current/man
-#    MANPATH="${MANPATH}":/Library/Frameworks/Mono.framework/Versions/Current/share/man
-#    export MANPATH
-
-    #CDPATH='.:~:/Users/jmchuma/Uni/current'
-    #export CDPATH
-
-    # This is here so I won't need to populate
-    # the default instalation of Python with crap
-    #if [ -d ~/local/python ] ; then
-    #    PYTHONPATH=~/local/python:"${PYTHONPATH}"
-    #    export PYTHONPATH
-    #elif [ -d ~/Applications/Python ] ; then
-    #    PYTHONPATH="${PYTHONPATH}":~/Applications/Python
-    #    export PYTHONPATH
-    #fi
-
-    # Turn off the bell for console
-    #setterm -blength 0
-
-    # Turn off the bell for x
-    #xset b off
-
-    # LSCOLORS
-    # a :: black
-    # b :: red
-    # c :: green
-    # d :: brown
-    # e :: blue
-    # f :: magenta
-    # g :: cyan
-    # h :: light grey
-    # A :: bold black, usually shows up as dark grey
-    # B :: bold red
-    # C :: bold green
-    # D :: bold brown, usually shows up as yellow
-    # E :: bold blue
-    # F :: bold magenta
-    # G :: bold cyan
-    # H :: bold light grey; looks like bright white
-    # x :: default foreground or background
+else # Darwin stuff
     #
-    # Note that the above are standard ANSI colors.  The actual display may differ depending on the
-    # color capabilities of the terminal in use. The order of the attributes are as follows:
-    # 1.   directory
-    # 2.   symbolic link
-    # 3.   socket
-    # 4.   pipe
-    # 5.   executable
-    # 6.   block special
-    # 7.   character special
-    # 8.   executable with setuid bit set
-    # 9.   executable with setgid bit set
-    # 10.  directory writable to others, with sticky bit
-    # 11.  directory writable to others, without sticky bit
-    #
-    # The default is "exfxcxdxbxegedabagacad", i.e. blue foreground and default background for regular
-    # directories, black foreground and red back-ground for setuid executables, etc.
     LSCOLORS=ExGxFxDxCxegedabagacad
     export LSCOLORS
 
-    # Setting PATH for Python 2.7
-    # The orginal version is saved in .bash_profile.pysave
-    #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-    #export PATH
+    # MacTex goodies
+    if [ -d /usr/texbin ] ; then
+        PATH=/usr/texbin:"${PATH}"
+    fi
 
     # Hombrew goodies
     PATH="/usr/local/bin:${PATH}"
     . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
-fi # end of Darwin stuff
+fi
 
-##### COMMON STUFF ####
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ignore lines starting with whitespace
@@ -151,13 +66,9 @@ set -o noclobber
 git_info() {
     local s=
 
-    #if [[ -d ".git" ]] ; then
     git status &> /dev/null
-    # git is buggy and instead of 0 when successful it returns 1
-    # change this whenever it's fixed.
-    # Seems to be fixed
+
     if [[ $? == 0 ]] ; then
-    #if [[ $? == 0 || $? == 1 ]] ; then
         local d=$(git rev-parse --git-dir 2>/dev/null ) b= r= a=
         if [[ -n "${d}" ]] ; then
             if [[ -d "${d}/../.dotest" ]] ; then
@@ -227,17 +138,6 @@ git_info() {
 #    fi
 #}
 
-# For mercurial
-#hg_info() {
-#    local s=
-#
-#    if [[ -d ".hg" ]] ; then
-#
-#    fi
-#
-#    echo -n "$s"
-#}
-
 # For subversion
 svn_info() {
     local s=
@@ -251,16 +151,8 @@ $(svn status 2>/dev/null |grep -q -v '^?' && echo -n "*")\
 $(svn status 2>/dev/null |grep -q '^!' && echo -n "!")\
 $(svn status 2>/dev/null |grep -q '^?' && echo -n "+")) "
 
-        # get the revision number
-        #local r=$(svn info 2>/dev/null |sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )
-        # add a star if something has changed
-        #s="s$r$(svn status 2>/dev/null |grep -q -v '^?' && echo -n "*" )"
-        # add a plus if something was added
-        #s="($s$(svn status 2>/dev/null |grep -q '^?' && echo -n "+" )) "
-
         echo -n "$s"
     fi
-
 }
 
 # working copy info
@@ -272,7 +164,6 @@ wc_info() {
 }
 
 # Color always on !!!!!
-#PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(bzr_info)\$(git_info)\n$\[\e[0m\] "
 PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(git_info)\n$\[\e[0m\] "
 PS2='\[\e[1;37m\]>\[\e[0m\] '
 
