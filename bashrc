@@ -26,6 +26,13 @@ if [ "`uname`" == "Linux" ] ; then
     #xset b off
 
     # TODO meter $XDG_DATA_* en bashrc
+
+    # texlive manual installation
+    if [ -d /usr/local/texlive/2012/bin/i386-linux ] ; then
+        PATH=/usr/local/texlive/2012/bin/i386-linux:"${PATH}"
+        MANPATH="${MANPATH}":/usr/local/texlive/2012/texmf/doc/man
+        INFOPATH="${INFOPATH}":/usr/local/texlive/2012/texmf/doc/info
+    fi
 else # Darwin stuff
     #
     LSCOLORS=ExGxFxDxCxegedabagacad
