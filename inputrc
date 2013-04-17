@@ -18,7 +18,9 @@ set visible-stats on
 
 # Cycling through potential completions is configured in .inputrc
 # List the possible completions when Tab is pressed
-#set show-all-if-ambiguous on
+set show-all-if-ambiguous on
+# set completion-ignore-case on
+
 # Make Meta+S cycle through the list
 #"\M-s": menu-complete
 
