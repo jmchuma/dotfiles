@@ -53,8 +53,12 @@ else # Darwin stuff
     export LSCOLORS
 
     # MacTex goodies
-    if [ -d /usr/texbin ] ; then
-        PATH=/usr/texbin:"${PATH}"
+    # it seems that BasicTex and MacTex don't install in the same directory
+    #if [ -d /usr/texbin ] ; then
+    if [ -d /usr/local/texlive/2013basic/bin/x86_64-darwin ] ; then
+    #    PATH=/usr/texbin:"${PATH}"
+        PATH=/usr/local/texlive/2013basic/bin/x86_64-darwin:$PATH
+        MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
     fi
 
     # Hombrew goodies
@@ -62,13 +66,19 @@ else # Darwin stuff
     . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi
 
+# remove dupes
+PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+export PATH
+MANPATH="$(printf "%s" "${MANPATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
+export MANPATH
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ignore lines starting with whitespace
 export HISTCONTROL="ignoreboth:erasedups"
-export HISTIGNORE="&:[bf]g:cd:cd ..:clear:exit:ls:make:pwd:vim"
+export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:ls:make:mv:pwd:vim"
 
 # see "help shopt" and shopt section in bash(1) for more info
 # Check window size after a process completes. Update LINES and COLUMNS if necessary.
