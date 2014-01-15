@@ -128,19 +128,19 @@ git_info() {
                 b=$(git symbolic-ref HEAD 2>/dev/null )
             fi
 
-            if git status | grep -q '^# Changed but not updated:' ; then
+            if git status | grep -q '^[# ]\{0,2\}Changed but not updated:' ; then
                 a="${a}*"
             fi
 
-            if git status | grep -q '^# Changes not staged for commit:' ; then
+            if git status | grep -q '^[# ]\{0,2\}Changes not staged for commit:' ; then
                 a="${a}*"
             fi
 
-            if git status | grep -q '^# Changes to be committed:' ; then
+            if git status | grep -q '^[# ]\{0,2\}Changes to be committed:' ; then
                 a="${a}+"
             fi
 
-            if git status | grep -q '^# Untracked files:' ; then
+            if git status | grep -q '^\(# \)\{0,1\}Untracked files:' ; then
                 a="${a}?"
             fi
 
