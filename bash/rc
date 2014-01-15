@@ -7,8 +7,8 @@ if [ -d ~/bin ] ; then
 fi
 
 # Android stuff
-if [ -d ~/Applications/android-sdk ] ; then
-    PATH=~/Applications/android-sdk/platform-tools:~/Applications/android-sdk/tools:"${PATH}"
+if [ -d ~/Applications/adt-bundle/sdk ] ; then
+    PATH=~/Applications/adt-bundle/sdk/platform-tools:~/Applications/adt-bundle/sdk/tools:"${PATH}"
 fi
 
 
