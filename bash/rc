@@ -86,19 +86,18 @@ git_info() {
                 b=$(git symbolic-ref HEAD 2>/dev/null )
             fi
 
-            if git status | grep -q '^[# ]\{0,2\}Changed but not updated:' ; then
+            # Changes in woring tree
+            if git status --porcelain | grep -q '^.[MD]' ; then
                 a="${a}*"
             fi
 
-            if git status | grep -q '^[# ]\{0,2\}Changes not staged for commit:' ; then
-                a="${a}*"
-            fi
-
-            if git status | grep -q '^[# ]\{0,2\}Changes to be committed:' ; then
+            # Changes added to index
+            if git status --porcelain | grep -q '^[AMDRC]' ; then
                 a="${a}+"
             fi
 
-            if git status | grep -q '^\(# \)\{0,1\}Untracked files:' ; then
+            # Untracked files
+            if git status --porcelain | grep -q '^??' ; then
                 a="${a}?"
             fi
 
