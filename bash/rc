@@ -87,17 +87,18 @@ git_info() {
             fi
 
             # Changes in woring tree
-            if git status --porcelain | grep -q '^.[MD]' ; then
+            local porcelain=$(git status --porcelain)
+            if echo "$porcelain" | grep -q '^.[MD]' ; then
                 a="${a}*"
             fi
 
             # Changes added to index
-            if git status --porcelain | grep -q '^[AMDRC]' ; then
+            if echo "$porcelain" | grep -q '^[AMDRC]' ; then
                 a="${a}+"
             fi
 
             # Untracked files
-            if git status --porcelain | grep -q '^??' ; then
+            if echo "$porcelain" | grep -q '^??' ; then
                 a="${a}?"
             fi
 
