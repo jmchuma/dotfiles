@@ -2,20 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-if [ -d ~/bin ] ; then
-    PATH=~/bin:"${PATH}"
-fi
-
-# Android stuff
-if [ -d ~/Applications/adt-bundle/sdk ] ; then
-    PATH=~/Applications/adt-bundle/sdk/platform-tools:~/Applications/adt-bundle/sdk/tools:"${PATH}"
-fi
-
-
-# rbenv goodies
-if [ -d ~/.rbenv ]; then
-    PATH="${HOME}/.rbenv/bin:${PATH}"
-    eval "$(rbenv init -)"
+# If not running interactively load bash_profile to set up $PATH and
+# other stuff before exiting.
+if [ -z "$PS1" ] ; then
+    . ~/.bash_profile
+    return
 fi
 
 if [ "`uname`" == "Linux" ] ; then
@@ -27,12 +18,6 @@ if [ "`uname`" == "Linux" ] ; then
 
     # TODO meter $XDG_DATA_* en bashrc
 
-    # texlive manual installation
-    if [ -d /usr/local/texlive/2012/bin/i386-linux ] ; then
-        PATH=/usr/local/texlive/2012/bin/i386-linux:"${PATH}"
-        MANPATH="${MANPATH}":/usr/local/texlive/2012/texmf/doc/man
-        INFOPATH="${INFOPATH}":/usr/local/texlive/2012/texmf/doc/info
-    fi
 else # Darwin stuff
     # Tell the terminal about the working directory at each prompt.
     # From OS X 10.7 /etc/bashrc
@@ -51,34 +36,7 @@ else # Darwin stuff
     #
     LSCOLORS=ExGxFxDxCxegedabagacad
     export LSCOLORS
-
-    # MacTex goodies
-    # it seems that BasicTex and MacTex don't install in the same directory
-    #if [ -d /usr/texbin ] ; then
-    if [ -d /usr/local/texlive/2013basic/bin/x86_64-darwin ] ; then
-    #    PATH=/usr/texbin:"${PATH}"
-        PATH=/usr/local/texlive/2013basic/bin/x86_64-darwin:$PATH
-        MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
-    fi
-
-    # Hombrew goodies
-    PATH="/usr/local/bin:${PATH}"
-    . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 fi
-
-# remove dupes
-PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
-export PATH
-MANPATH="$(printf "%s" "${MANPATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
-export MANPATH
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# don't put duplicate lines in the history. See bash(1) for more options
-# ignore lines starting with whitespace
-export HISTCONTROL="ignoreboth:erasedups"
-export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:ls:make:mv:pwd:vim"
 
 # see "help shopt" and shopt section in bash(1) for more info
 # Check window size after a process completes. Update LINES and COLUMNS if necessary.
