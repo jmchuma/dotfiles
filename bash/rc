@@ -9,34 +9,41 @@ if [ -z "$PS1" ] ; then
     return
 fi
 
-if [ $(uname) == "Linux" ] ; then
-    # Turn off the bell for console
-    setterm -blength 0
+case $(uname) in
+    Linux)
+        # Turn off the bell for console
+        setterm -blength 0
 
-    # Turn off the bell for x
-    #xset b off
+        # Turn off the bell for x
+        #xset b off
 
-    # TODO meter $XDG_DATA_* en bashrc
+        # TODO meter $XDG_DATA_* en bashrc
+        ;;
 
-else # Darwin stuff
-    # Tell the terminal about the working directory at each prompt.
-    # From OS X 10.7 /etc/bashrc
-    if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
-        update_terminal_cwd() {
-            # Identify the directory using a "file:" scheme URL,
-            # including the host name to disambiguate local vs.
-            # remote connections. Percent-escape spaces.
-            local SEARCH=' '
-            local REPLACE='%20'
-            local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-            printf '\e]7;%s\a' "$PWD_URL"
-        }
-        PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
-    fi
-    #
-    LSCOLORS=ExGxFxDxCxegedabagacad
-    export LSCOLORS
-fi
+    Darwin)
+        # Tell the terminal about the working directory at each prompt.
+        # From OS X 10.7 /etc/bashrc
+        if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
+            update_terminal_cwd() {
+                # Identify the directory using a "file:" scheme URL,
+                # including the host name to disambiguate local vs.
+                # remote connections. Percent-escape spaces.
+                local SEARCH=' '
+                local REPLACE='%20'
+                local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+                printf '\e]7;%s\a' "$PWD_URL"
+            }
+            PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+        fi
+        #
+        LSCOLORS=ExGxFxDxCxegedabagacad
+        export LSCOLORS
+        ;;
+
+    *)
+        echo "Unknown OS $(uname)"
+        ;;
+esac
 
 # see "help shopt" and shopt section in bash(1) for more info
 # Check window size after a process completes. Update LINES and COLUMNS if necessary.
