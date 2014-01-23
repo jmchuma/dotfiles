@@ -9,7 +9,7 @@ if [ -z "$PS1" ] ; then
     return
 fi
 
-if [ "`uname`" == "Linux" ] ; then
+if [ $(uname) == "Linux" ] ; then
     # Turn off the bell for console
     setterm -blength 0
 
@@ -110,22 +110,6 @@ git_info() {
 
     echo -n "$s"
 }
-
-# For bazaar
-#bzr_info() {
-#    local s=
-#    if [[ -d ".bzr" ]] ; then
-##        bzr info -v
-#        #s="(BZR $(bzr status 2>/dev/null |grep -q -v '^(unknown:|added:)' && echo -n "*")\
-#        s="(BZR $(bzr status 2>/dev/null |grep -q 'modified' && echo -n "*")\
-#$(bzr status 2>/dev/null |grep -q 'added:' && echo -n "+")\
-#$(bzr status 2>/dev/null |grep -q 'removed:' && echo -n "-")\
-#$(bzr status 2>/dev/null |grep -q 'unknown:' && echo -n "?")\
-#$(bzr status 2>/dev/null |grep -q '^!' && echo -n "!")) "
-#
-#        echo -n "$s"
-#    fi
-#}
 
 # For subversion
 svn_info() {
