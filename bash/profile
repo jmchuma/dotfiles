@@ -41,6 +41,9 @@ else # Darwin stuff
     fi
 fi
 
+### Added by the Heroku Toolbelt
+[ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
+
 # remove dupes
 PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
 export PATH
