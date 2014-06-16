@@ -34,6 +34,11 @@ else # Darwin stuff
         MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
     fi
 
+    # For Postgress.app
+    if [ -d /Applications/Postgres.app ] ; then
+        PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+    fi
+
     # Hombrew goodies
     if command -v brew >/dev/null 2>&1 ; then
         PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
