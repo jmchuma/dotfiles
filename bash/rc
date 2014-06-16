@@ -157,6 +157,13 @@ case "$TERM" in
         ;;
 esac
 
+# To use pip on the global environment
+syspip(){
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && . /usr/local/bin/virtualenvwrapper.sh
+
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

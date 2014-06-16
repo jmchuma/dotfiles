@@ -55,6 +55,11 @@ export MANPATH
 export HISTCONTROL="ignoreboth:erasedups"
 export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:git diff:git status:ls:make:mv:pwd:vim:"
 
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+# cache pip-installed packages to avoid re-downloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
