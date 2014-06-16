@@ -35,8 +35,10 @@ else # Darwin stuff
     fi
 
     # Hombrew goodies
-    PATH="/usr/local/bin:${PATH}"
-    . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+    if command -v brew >/dev/null 2>&1 ; then
+        PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
+        . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+    fi
 fi
 
 # remove dupes
