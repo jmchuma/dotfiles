@@ -48,7 +48,7 @@ export MANPATH
 # don't put duplicate lines in the history. See bash(1) for more options
 # ignore lines starting with whitespace
 export HISTCONTROL="ignoreboth:erasedups"
-export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:ls:make:mv:pwd:vim"
+export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:git diff:git status:ls:make:mv:pwd:vim:"
 
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
