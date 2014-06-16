@@ -55,6 +55,10 @@ export MANPATH
 export HISTCONTROL="ignoreboth:erasedups"
 export HISTIGNORE="&:[bf]g:cd:cd ..:clear:cp:exit:git diff:git status:ls:make:mv:pwd:vim:"
 
+# Because sometimes Python flips you the bird
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=true
 # cache pip-installed packages to avoid re-downloading
