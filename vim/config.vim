@@ -7,6 +7,7 @@ set visualbell             " visual bell instead of beeping
 " UI -------------------------------------------------------------------------
 
 set title
+set t_Co=256
 set background=dark
 if filereadable(expand("~/.vim/colors/gotan.vim"))
     colorscheme gotan
