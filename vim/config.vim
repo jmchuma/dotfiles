@@ -7,9 +7,12 @@ set visualbell             " visual bell instead of beeping
 " UI -------------------------------------------------------------------------
 
 set title
-set t_Co=256
+"set t_Co=256
 set background=dark
-if filereadable(expand("~/.vim/colors/gotan.vim"))
+if filereadable(expand("~/.vim/colors/solarized.vim"))
+    let g:solarized_termcolors=256
+    colorscheme solarized
+elseif filereadable(expand("~/.vim/colors/gotan.vim"))
     colorscheme gotan
 endif
 
@@ -30,7 +33,13 @@ set laststatus=2
 set autoread               " read open files again when changed outside Vim
 set autowrite              " write a modified buffer on each :next , ...
 set browsedir  =current    " which directory to use for the file browser
-set nowrap                 " do not wrap lines
+set wrap
+set linebreak
+set nolist
+set showbreak=···
+set textwidth=0
+set wrapmargin=0
+set formatoptions+=l
 set nojoinspaces           " Use only one space after period when joining lines
 set splitbelow
 set splitright
@@ -42,10 +51,10 @@ set splitright
 
 " TODO set indent style per language
 "set shiftwidth =4          " number of spaces to use for each step of indent
-set tabstop=4              " number of spaces that a <Tab> in the file counts for
+"set tabstop=4              " number of spaces that a <Tab> in the file counts for
 "set expandtab
 "set smarttab
-set autoindent
+"set autoindent
 " mirar www.stripey.com/vim/vimrc.html y www.vi-improved.org/vimrc.php
 "set shiftround
 "set smartindent
