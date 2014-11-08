@@ -25,12 +25,9 @@ if [ "`uname`" == "Linux" ] ; then
         INFOPATH="${INFOPATH}":/usr/local/texlive/2012/texmf/doc/info
     fi
 else # Darwin stuff
-    # MacTex goodies
-    # it seems that BasicTex and MacTex don't install in the same directory
-    #if [ -d /usr/texbin ] ; then
-    if [ -d /usr/local/texlive/2013basic/bin/x86_64-darwin ] ; then
-    #    PATH=/usr/texbin:"${PATH}"
-        PATH=/usr/local/texlive/2013basic/bin/x86_64-darwin:$PATH
+    # BasicTex goodies
+    if [ -d /usr/local/texlive/2014basic/bin/x86_64-darwin ] ; then
+        PATH=/usr/local/texlive/2014basic/bin/x86_64-darwin:$PATH
         MANPATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH"
     fi
 
