@@ -14,18 +14,14 @@
 #	local = yellow
 	remote = yellow
 [color "diff"]
-#	meta = yellow bold
-	meta = cyan bold
-#	meta = white bold
-	frag = magenta white bold
-#	frag = yellow bold reverse
-	old = red bold
-	new = green bold
+	meta = cyan
+	frag = black yellow
+	old = red
+	new = green
 [color "status"]
 	added = yellow
 	changed = red
 	untracked = cyan
-#	untracked = white
 # This was not a good idea
 #[merge]
 #	ff = false
