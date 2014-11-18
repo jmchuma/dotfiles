@@ -36,7 +36,7 @@ case $(uname) in
             PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
         fi
         #
-        LSCOLORS=ExGxFxDxCxegedabagacad
+        LSCOLORS=exgxfxdxcxegedabagacad
         export LSCOLORS
         ;;
 
@@ -144,8 +144,16 @@ wc_info() {
 }
 
 # Color always on !!!!!
-PS1="\[\e[1;32m\]\u@\h\[\e[0m\] \[\e[1;33m\]\w\[\e[1;37m\] \$(svn_info)\$(git_info)\n$\[\e[0m\] "
-PS2='\[\e[1;37m\]>\[\e[0m\] '
+blue="\[\e[0;34m\]"
+cyan="\[\e[0;36m\]"
+green="\[\e[0;32m\]"
+no_color="\[\e[0m\]"
+white="\[\e[0;37m\]"
+yellow="\[\e[0;33m\]"
+
+#PS1="$green\u@\h$no_color $yellow\w$white \$(svn_info)\$(git_info)\n\$$no_color "
+PS1="$cyan\u@\h$no_color $blue\w$white \$(svn_info)\$(git_info)\n\$$no_color "
+PS2="$white>$no_color "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
