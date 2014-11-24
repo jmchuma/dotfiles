@@ -1,6 +1,6 @@
 # ~/.bash_profile: executed by bash for login shells.
 
-umask 027
+umask 0026
 
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
