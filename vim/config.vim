@@ -22,7 +22,7 @@ set cursorline             " highlight line of cursor
 set nu                     " show line nubers
 set ruler                  " show current line and colum number
 set showmatch              " match opening and closing punctuation together
-set statusline='%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v]\ [LEN=%L]'
+set statusline='%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v]'
                            " hacer luego help statusline para ver que es cada cosa
 set laststatus=2
 

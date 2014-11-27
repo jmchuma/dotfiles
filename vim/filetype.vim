@@ -9,3 +9,5 @@ au BufRead,BufNewFile *.{j,jasmin}	setf jasmin
 au BufRead,BufNewFile *.stg		setf stg
 " this is temporary
 au BufRead,BufNewFile *.tjj		setf trajaja
+
+au BufNewFile,BufRead */git/config setf gitconfig
