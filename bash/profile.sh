@@ -7,8 +7,8 @@ if [ -d ~/bin ] ; then
 fi
 
 # Android stuff
-if [ -d ~/Applications/adt-bundle/sdk ] ; then
-    PATH=~/Applications/adt-bundle/sdk/platform-tools:~/Applications/adt-bundle/sdk/tools:"${PATH}"
+if [ -d ~/rootdir/android ] ; then
+    PATH=~/rootdir/android/platform-tools:~/rootdir/android/tools:"${PATH}"
 fi
 
 # rbenv goodies
