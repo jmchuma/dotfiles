@@ -1,14 +1,22 @@
+http://valgrind.org/
+
 BASH
 http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html
 http://dghubble.com/.bashprofile-.profile-and-.bashrc-conventions.html
 
 
 EMACS
+https://twitter.com/anler/status/424275312000524289
 http://orgmode.org/
 http://www.gnu.org/software/emacs/manual/html_node/org/
 http://whattheemacsd.com
 https://github.com/magnars/.emacs.d
 https://github.com/purcell/emacs.d
+
+
+FISH
+http://fishshell.com/docs/current/tutorial.html#tut_command_substitutions
+http://en.wikipedia.org/wiki/Friendly_interactive_shell
 
 
 VIM
