@@ -1,4 +1,5 @@
-also - use CTRL-v CTRL-m to get a newline - will look like ^M but match newlines.
+also - use CTRL-v CTRL-m to get a newline - will look like ^M but match
+newlines.
 
 set paste
 help bomb
@@ -48,11 +49,13 @@ with implicit brakes
 
 move around "screen lines" with gk and gj
 
+This leaves h and l with their default behavior, but allows the left and right
+arrow keys to wrap around lines. (This is what I do, and it works well.)
 :set whichwrap+=<,>,[,]
-This leaves h and l with their default behavior, but allows the left and right arrow keys to wrap around lines. (This is what I do, and it works well.)
 
-You might also want to take a look at the backspace setting, to control how Backspace, Delete, Control+W, and Control+U work in Insert mode. I set mine like this:
-
+You might also want to take a look at the backspace setting, to control how
+Backspace, Delete, Control+W, and Control+U work in Insert mode. I set mine
+like this:
 :set backspace=indent,eol,start
 That allows me to backspace over pretty much everything.
 
