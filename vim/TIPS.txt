@@ -34,4 +34,26 @@ set nobomb
 :saveas foo.txt -> line :w foo.txt and then :e foo.txt
 :file foo.txt -> changes name but does not write
 
+WRAPPING
+http://vimcasts.org/episodes/soft-wrapping-text/
+
+with explicit brakes
+:set textwidth=n
+:set wrapmargin=n
+
+with implicit brakes
+:set wrap
+:set linebreak
+:set nolist  " list disables linebreak
+
+move around "screen lines" with gk and gj
+
+:set whichwrap+=<,>,[,]
+This leaves h and l with their default behavior, but allows the left and right arrow keys to wrap around lines. (This is what I do, and it works well.)
+
+You might also want to take a look at the backspace setting, to control how Backspace, Delete, Control+W, and Control+U work in Insert mode. I set mine like this:
+
+:set backspace=indent,eol,start
+That allows me to backspace over pretty much everything.
+
 
