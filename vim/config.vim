@@ -2,6 +2,7 @@
 syntax on
 set encoding=utf-8
 set visualbell             " visual bell instead of beeping
+set backspace=2            " make backspace work like most other apps
 
 
 " UI -------------------------------------------------------------------------
@@ -46,6 +47,8 @@ set splitright
 " guarda 20 lineas en la memoria de comando y 20 en la de busqueda
 "set history=20
 
+" Allows the left and right arrow keys to wrap around lines.
+set whichwrap+=<,>,[,]
 
 " Indenting ------------------------------------------------------------------
 
