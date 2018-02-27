@@ -1,4 +1,11 @@
 http://valgrind.org/
+https://nodejs.org/en/
+https://en.wikipedia.org/wiki/Lighttpd
+postgresql
+https://en.wikipedia.org/wiki/NoSQL#Types_and_examples_of_NoSQL_databases
+https://en.wikipedia.org/wiki/MongoDB
+https://en.wikipedia.org/wiki/Nginx
+
 
 BASH
 http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html
@@ -23,3 +30,5 @@ VIM
 http://myusuf3.github.io/numbers.vim/
 https://github.com/ayanko/vim-bundle
 
+ZSH
+Try this thing!
