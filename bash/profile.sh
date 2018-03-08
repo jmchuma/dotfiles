@@ -1,6 +1,8 @@
 # ~/.bash_profile: executed by bash for login shells.
 
-umask 0026
+#umask 0026
+## Because of my external hdd. There might be a way to do this better but…
+umask 0022
 
 if [ -d ~/bin ] ; then
     PATH=~/bin:"${PATH}"
@@ -25,6 +27,13 @@ if [ "`uname`" == "Linux" ] ; then
         INFOPATH="${INFOPATH}":/usr/local/texlive/2012/texmf/doc/info
     fi
 else # Darwin stuff
+    # I need this for Gradle, since Google decided to drop suppor for 10.7 and
+    # release adb for 10.8 or newer.
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    if [ -d ~/rootdir/gradle ] ; then
+        PATH=~/rootdir/gradle/bin:"${PATH}"
+    fi
+
     # BasicTex goodies
     if [ -d /usr/local/texlive/2014basic/bin/x86_64-darwin ] ; then
         PATH=/usr/local/texlive/2014basic/bin/x86_64-darwin:$PATH
@@ -39,12 +48,19 @@ else # Darwin stuff
     # Hombrew goodies
     if command -v brew >/dev/null 2>&1 ; then
         PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
-        . `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+        brew_bash_completion="$(brew --prefix)/Library/Contributions/brew_bash_completion.sh"
+        if [ -f $brew_bash_completion ] ; then
+            . $brew_bash_completion
+        fi
     fi
 fi
 
 ### Added by the Heroku Toolbelt
 [ -d /usr/local/heroku/bin ] && export PATH="/usr/local/heroku/bin:$PATH"
+
+# Cabal, for pandoc and stuff
+# Run "cabal update" every once in a while
+[ -d $HOME/.cabal/bin ] && export PATH="${HOME}/.cabal/bin:$PATH"
 
 # remove dupes
 PATH="$(printf "%s" "${PATH}" | /usr/bin/awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')"
