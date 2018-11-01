@@ -173,3 +173,5 @@ for_window [class="^.*"] border pixel 0
 
 gaps inner 4
 gaps outer 4
+
+floating_maximum_size 500 x 300
