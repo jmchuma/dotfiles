@@ -178,3 +178,6 @@ gaps inner 4
 gaps outer 4
 
 floating_maximum_size 500 x 300
+
+# Set wallpaper color
+exec --no-startup-id xsetroot -solid "#3465a4"
