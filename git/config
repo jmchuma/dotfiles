@@ -27,3 +27,5 @@
 #	ff = false
 [push]
 	default = upstream
+[diff]
+	submodule = log
