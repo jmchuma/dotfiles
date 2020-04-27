@@ -1,5 +1,16 @@
 #~/.bash_aliases
 
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# enable color output for cetain commands
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+
+    alias grep='grep --color=auto'
+fi
+
 if [ "$TERM" != "dumb" ]; then
     if [ "`uname`" == "Darwin" ]; then
         alias ls='ls -AFGh'
@@ -15,8 +26,6 @@ if [ "$TERM" != "dumb" ]; then
     elif [ "`uname`" == "Linux" ]; then
         alias ls='ls -AFh --color=auto'
         alias pstree='pstree -ca'
-#        alias eclipse='/opt/eclipse/eclipse'
-#        alias tilda_conf='tilda -C'
     fi
 fi
 
@@ -27,7 +36,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias diff='diff -u'
-alias grep='grep --color'
 alias python='python -t'
 
 #alias gcc='gcc -ansi -g -Wall'
