@@ -184,7 +184,11 @@ bar {
         status_command i3blocks
 }
 
-for_window [class="^.*"] border pixel 0
+# TODO review this border mess
+#for_window [class="^.*"] border pixel 0
+default_border pixel 3
+default_floating_border normal
+#default_floating_border pixel 5
 
 gaps inner 4
 gaps outer 4
@@ -192,4 +196,4 @@ gaps outer 4
 floating_maximum_size 500 x 300
 
 # Set wallpaper color
-exec --no-startup-id xsetroot -solid "#212C42"
+exec --no-startup-id xsetroot -solid "#1d2021"
