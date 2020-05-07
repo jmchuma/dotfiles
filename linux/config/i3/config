@@ -202,7 +202,9 @@ client.focused          #000000   #000000   #ffffff   #fabd2f     #458588
 gaps inner 4
 gaps outer 4
 
-floating_maximum_size 500 x 300
+# This is basically for popup windows and the download
+# dialog from whichever brownser I'm using.
+floating_maximum_size 640 x 480
 
 # prevent windows focus to chage with mouse movements
 focus_follows_mouse no
