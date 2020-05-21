@@ -27,8 +27,17 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/local/libexec/i3blocks/$BLOCK_NAME
-separator_block_width=15
 markup=none
+separator=false
+separator_block_width=15
+
+# Date Time
+#
+[time]
+command=date '+%Y-%m-%d  %H:%M'
+color=#fde74c
+interval=60
+separator_block_width=80
 
 # Volume indicator
 #
@@ -36,23 +45,36 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-label=VOL
 #label=♪
+#label=<span color='#458588'>🔊 </span>
+# font-awesome volume-up
+label=<span color='#2e86ab'> </span>
+markup=pango
 instance=Master
 #instance=PCM
 interval=once
 signal=10
+#STEP=5%
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+#label=MEM
+# font-awesome microchip
+# TODO: use font-awesome memory
+label=<span color='#2e86ab'> </span>
+markup=pango
 separator=false
 interval=30
 
 [memory]
 label=SWAP
+# font-awesome database
+label=<span color='#2e86ab'> </span>
+markup=pango
 instance=swap
 separator=false
 interval=30
@@ -63,7 +85,10 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=HOME
+#label=HOME
+#font-awesome hdd
+label=<span color='#2e86ab'> </span>
+markup=pango
 #instance=/mnt/data
 interval=30
 
@@ -73,14 +98,12 @@ interval=30
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
 #instance=wlan0
-color=#98971a
+color=#fde74c
 interval=10
-separator=false
 
 [wifi]
 #instance=wlp3s0
 interval=10
-separator=false
 
 [bandwidth]
 #instance=eth0
@@ -94,7 +117,6 @@ interval=5
 label=CPU
 interval=10
 min_width=CPU: 100.00%
-#separator=false
 
 #[load_average]
 #interval=10
@@ -107,9 +129,3 @@ label=BAT
 #label=⚡
 #instance=1
 interval=30
-
-# Date Time
-#
-[time]
-command=date '+%Y-%m-%d %H:%M'
-interval=60
