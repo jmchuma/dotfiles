@@ -9,10 +9,4 @@ https://en.wikipedia.org/wiki/Nginx
 
 BASH
 http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html
-http://dghubble.com/.bashprofile-.profile-and-.bashrc-conventions.html
-
-
-VIM
-http://myusuf3.github.io/numbers.vim/
-https://github.com/ayanko/vim-bundle
-
+https://blog.dghubble.io/post/.bashprofile-.profile-and-.bashrc-conventions/
