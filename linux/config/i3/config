@@ -188,7 +188,6 @@ bar {
 #for_window [class="^.*"] border pixel 0
 default_border pixel 3
 default_floating_border normal
-#default_floating_border pixel 5
 
 # class                 border    backgr.   text      indicator   child_border
 client.focused          #000000   #000000   #ffffff   #fabd2f     #458588
