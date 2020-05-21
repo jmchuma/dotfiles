@@ -1,6 +1,7 @@
 ! Use a nice truetype font and size by default...
+! This is here because of ranger
 xterm*faceName: DejaVu Sans Mono Book
-xterm*faceSize: 12
+xterm*faceSize: 10
 
 xterm*foreground: rgb:ff/ff/ff
 xterm*background: rgb:00/00/00
