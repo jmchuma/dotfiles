@@ -173,6 +173,15 @@ bindsym $mod+r mode "resize"
 # maim is broken, use import from imagemagick instead
 bindsym --release Print exec --no-startup-id import -w root ~/pix/Screenshot-$(date +%Y%m%d-%H%M%S).png
 
+# manage volume from the keyboard
+bindsym  XF86AudioRaiseVolume  exec  --no-startup-id  amixer  set Master 5%+
+bindsym  XF86AudioLowerVolume  exec  --no-startup-id  amixer  set Master 5%-
+bindsym  XF86AudioMute         exec  --no-startup-id  amixer  set Master toggle
+# signal i3blocks to update the volume block
+bindsym  --release  XF86AudioRaiseVolume  exec  pkill -RTMIN+10 i3blocks
+bindsym  --release  XF86AudioLowerVolume  exec  pkill -RTMIN+10 i3blocks
+bindsym  --release  XF86AudioMute         exec  pkill -RTMIN+10 i3blocks
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
