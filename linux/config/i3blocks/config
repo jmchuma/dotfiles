@@ -114,7 +114,9 @@ interval=5
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+# font-awesome cogs
+label=<span color='#2e86ab'> </span>
+markup=pango
 interval=10
 min_width=CPU: 100.00%
 
