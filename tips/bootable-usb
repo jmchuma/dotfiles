@@ -1,0 +1,15 @@
+UNDER LINUX
+1. Find out the USB device:
+    lsblk
+2. Unmount is if necessary
+    pumount (if installed)
+3. Dump ISO to device
+    sudo dd if=/path/to/iso of=/path/to/device bs=blocksize conv=fdatasync status=progress
+
+UNDER OS X
+1. Find out the USB device via:
+      diskutil info /USB/MOUNT/POINT
+2. Unmount the drive
+      diskutil umountDisk /dev/USB_DRIVE
+3. Copy the iso to the root disk, not to a partition
+      cp PATH/TO/ISO PATH/TO/USB/DEVICE

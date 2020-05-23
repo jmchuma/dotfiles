@@ -1,0 +1,2 @@
+# for when the cam on the macbook doesn't work
+sudo killall VDCAssistant

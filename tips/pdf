@@ -1,0 +1,3 @@
+# user convert (inclide in imagemagick) to join
+# many images into a single pdf
+convert image1 image2 ... imageN output.pdf
