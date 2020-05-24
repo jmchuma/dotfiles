@@ -7,8 +7,6 @@
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
 fi
 
 if [ "$TERM" != "dumb" ]; then
@@ -29,6 +27,7 @@ if [ "$TERM" != "dumb" ]; then
     fi
 fi
 
+#commom
 alias su='su -l'
 
 alias rm='rm -i'
@@ -36,6 +35,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias diff='diff -u'
+alias grep='grep --color=auto'
 alias python='python -t'
 
 #alias gcc='gcc -ansi -g -Wall'
