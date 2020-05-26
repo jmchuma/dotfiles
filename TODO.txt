@@ -10,3 +10,25 @@ https://en.wikipedia.org/wiki/Nginx
 BASH
 http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html
 https://blog.dghubble.io/posts/.bashprofile-.profile-and-.bashrc-conventions/
+
+
+## linux/config
+http://ryan.himmelwright.net/post/started-using-i3blocks/
+
+https://github.com/vivien/i3blocks
+
+https://wiki.archlinux.org/index.php/Xbindkeys
+
+https://sergioquijanorey.github.io/i3/linux/programacion/administracion/2018/09/09/configuraci%C3%B3n-i3wm.html
+
+
+## linux/config/rofi
+https://wiki.archlinux.org/index.php/Rofi
+
+ihttps://github.com/davatorium/rofi/wiki/themes
+
+https://github.com/davatorium/rofi/wiki/Configuring-Rofi
+
+
+## Think about
+https://medium.com/better-programming/why-i-use-fish-shell-over-bash-and-zsh-407d23293839
