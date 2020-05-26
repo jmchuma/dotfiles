@@ -9,4 +9,4 @@ https://en.wikipedia.org/wiki/Nginx
 
 BASH
 http://www.linuxfromscratch.org/blfs/view/svn/postlfs/profile.html
-https://blog.dghubble.io/post/.bashprofile-.profile-and-.bashrc-conventions/
+https://blog.dghubble.io/posts/.bashprofile-.profile-and-.bashrc-conventions/
