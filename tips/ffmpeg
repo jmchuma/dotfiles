@@ -7,3 +7,8 @@ ffmpeg -i input/path.ext
 ffmpeg -i input/path.ext \
    -author "author name" -title 'Song title' \
    -vn -acodec copy output/path.ext
+
+# extract unmodified audio
+# -vn: video no
+# -acodec copy: audio codec copy
+ffmpeg -i file.ext -vn -acodec copy file.ext
