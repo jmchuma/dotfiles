@@ -182,6 +182,39 @@ bindsym  --release  XF86AudioRaiseVolume  exec  pkill -RTMIN+10 i3blocks
 bindsym  --release  XF86AudioLowerVolume  exec  pkill -RTMIN+10 i3blocks
 bindsym  --release  XF86AudioMute         exec  pkill -RTMIN+10 i3blocks
 
+# sleep 1 adds a small delay to prevent possible race conditions with suspend
+#set $Locker i3lock && sleep 1
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+
+mode "$mode_system" {
+    #bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym l exec --no-startup-id i3lock, mode "default"
+
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+
+    #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id i3lock && systemctl suspend, mode "default"
+
+    #bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym h exec --no-startup-id i3lock && systemctl hibernate, mode "default"
+
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+
+    # The -i argument for systemctl poweroff causes a shutdown even if other
+    # users are logged-in (this requires polkit), or when logind (wrongly)
+    # assumes so.
+    #bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
