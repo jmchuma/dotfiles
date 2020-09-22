@@ -24,7 +24,10 @@ git_info() {
 }
 
 # Turn off the bell for console
-setterm -blength 0
+#setterm --blength 0
+# with the previos commands I got this error from st
+# setterm: terminal st-256color does not support --blength
+setterm blength 0
 
 # Turn off the bell for x
 #xset b off
@@ -37,9 +40,8 @@ setterm -blength 0
 # to the forked processes.
 #export HISTCONTROL="ignoreboth:erasedups"
 HISTCONTROL="ignoreboth:erasedups"
-# TODO review is I shold also ignore…
-#export HISTIGNORE="&:[bf]g:cp:git diff:git status:ls:make:mv"
-HISTIGNORE="*apt list *":cd:"cd ":"cd ..":clear:clea:exir:exit:"firefox*":free:"free -h":help:"help *":history:"history *":ls:"ls -l":lsblk:"lsblk *":man:"man *":ps:"ps aux":pwd:ranger:"rm -f *":"rm -drf *":"*shutdown*":vim:startx
+# TODO review if I shold also ignore…
+HISTIGNORE="*apt list *":cd:"cd ":"cd ..":clear:clea:exir:exit:"firefox*":free:"free -h":"git diff":"git status":help:"help *":history:"history *":ls:"ls -l":lsblk:"lsblk *":make:man:"man *":ps:"ps aux":pwd:ranger:"rm -f *":"rm -drf *":"*shutdown*":vim:startx
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=100
 HISTFILESIZE=2000
