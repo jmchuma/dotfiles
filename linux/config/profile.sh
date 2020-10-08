@@ -19,9 +19,10 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
+
 # because I gem install --user-install
 if hash ruby 2>/dev/null; then
     PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
