@@ -24,9 +24,13 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # because I gem install --user-install
-if hash ruby 2>/dev/null; then
-    PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
-fi
+#if hash ruby 2>/dev/null; then
+#    PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+#fi
+# Not necessary anymore!!!
+# I've linked the latest installation
+# to ~/.gem/ruby/current and the files
+# in ~/.gem/ruby/current/bin to ~/.local/bin
 
 JAVA_HOME="$HOME/.local/lib/jre"
 if [ -d $JAVA_HOME ] ; then
