@@ -31,7 +31,10 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec tabbed -c -r 2 st -w ''
+# no need for tabbed since I learned to use
+# the tabbed layout in i3
+#bindsym $mod+Return exec tabbed -c -r 2 st -w ''
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
