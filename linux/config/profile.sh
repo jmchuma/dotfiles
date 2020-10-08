@@ -24,7 +24,12 @@ if [ -d "$HOME/bin" ] ; then
 fi
 # because I gem install --user-install
 if hash ruby 2>/dev/null; then
-        PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+    PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
+JAVA_HOME="$HOME/.local/lib/jre"
+if [ -d $JAVA_HOME ] ; then
+    export JAVA_HOME
 fi
 
 # Remove dupes. Shouldn't be necessary.
