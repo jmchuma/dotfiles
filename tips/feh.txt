@@ -1,0 +1,13 @@
+
+
+Play all images in a direcotory
+
+feh -D 5 -F -z directory
+
+-D n : next image every n secs
+-F   : full screen
+-z   : randomize
+-r   : recursively
+
+
+h    : pause slideshow

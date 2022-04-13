@@ -1,0 +1,15 @@
+
+
+Open all avi in a dir
+mplayer -playlist <(find "$PWD" -name "*.avi" -type f | sort)
+
+-fs fullscreen
+-vf expand=1280:720:x:y:1::
+-shuffle
+-osdlevel 3
+-subfont-osdscale 3
+
+
+< play previos
+> play next
+
