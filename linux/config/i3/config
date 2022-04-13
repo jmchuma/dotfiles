@@ -13,7 +13,8 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:courierprime, Courier, monospace 8
+
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -174,7 +175,7 @@ bindsym $mod+r mode "resize"
 #bindsym --release Print exec "maim ~/pix/Screenshot-$(date +%Y%m%d-%H%M%S).png"
 #bindsym --release Print exec --no-startup-id "maim ~/pix/Screenshot-$(date +%Y%m%d-%H%M%S).png"
 # maim is broken, use import from imagemagick instead
-bindsym --release Print exec --no-startup-id import -w root ~/pix/Screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym --release Print exec --no-startup-id import -w root ~/pix/_screenshots/Screenshot-$(date +%Y%m%d-%H%M%S).png
 
 # manage volume from the keyboard
 bindsym  XF86AudioRaiseVolume  exec  --no-startup-id  amixer  set Master 5%+
@@ -187,19 +188,20 @@ bindsym  --release  XF86AudioMute         exec  pkill -RTMIN+10 i3blocks
 
 # sleep 1 adds a small delay to prevent possible race conditions with suspend
 #set $Locker i3lock && sleep 1
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+#set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system (e) logout, (r) reboot, (Shift+s) shutdown
 
 mode "$mode_system" {
     #bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym l exec --no-startup-id i3lock, mode "default"
+    #bindsym l exec --no-startup-id i3lock, mode "default"
 
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
 
     #bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym s exec --no-startup-id i3lock && systemctl suspend, mode "default"
+    #bindsym s exec --no-startup-id i3lock && systemctl suspend, mode "default"
 
     #bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym h exec --no-startup-id i3lock && systemctl hibernate, mode "default"
+    #bindsym h exec --no-startup-id i3lock && systemctl hibernate, mode "default"
 
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
 
@@ -230,6 +232,7 @@ bar {
         inactive_workspace  #1d2021  #1d2021  #ffffff
         urgent_workspace    #cc241d  #cc241d  #ffffff
     }
+        height 20
         position top
         status_command i3blocks
 }
