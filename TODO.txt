@@ -32,3 +32,8 @@ https://github.com/davatorium/rofi/wiki/Configuring-Rofi
 
 ## Think about
 https://medium.com/better-programming/why-i-use-fish-shell-over-bash-and-zsh-407d23293839
+
+Parcellite
+    http://parcellite.sourceforge.net/
+    https://github.com/rickyrockrat/parcellite
+    https://github.com/CristianHenzel/ClipIt
