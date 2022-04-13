@@ -96,18 +96,23 @@ interval=30
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-[iface]
-#instance=wlan0
-color=#fde74c
-interval=10
 
+# My ethernet interface
+# commented since I'm not using it
+#[iface]
+#instance=enp8s0
+#color=#fde74c
+#interval=10
+## ethernet glyph from Font Awesome
+#label=<span color='#2e86ab'> </span>
+#markup=pango
+
+# My wireless infterface
 [wifi]
-#instance=wlp3s0
+instance=wlxe84e0624ec7e
 interval=10
-
-[bandwidth]
-#instance=eth0
-interval=5
+label=<span color='#2e86ab'> </span>
+markup=pango
 
 # CPU usage
 #
