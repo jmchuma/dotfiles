@@ -4,10 +4,17 @@ Play all images in a direcotory
 
 feh -D 5 -F -z directory
 
+
+COMMAND LINE OPTIONS
+
+-B colour: background colour for transparet areas
 -D n : next image every n secs
 -F   : full screen
 -z   : randomize
 -r   : recursively
+-.   : fit image to window
+-d   : show filename
 
 
+IN APP
 h    : pause slideshow
