@@ -15,16 +15,22 @@ COMMAND LINE OPTIONS
 -S mtime :
 -Smtime  : sort by modified time
 
--D n :
--Dn  : next image every n secs
+-D n:
+-Dn : next image every n secs
 
--.   : fit image to window
--F   : full screen
--d   : show filename
--r   : recursively
--z   : randomize
+-.  : fit image to window
+-F  : full screen
+-d  : show filename
+-r  : recursively
+-z  : randomize
 
 
 
-IN APP
-h    : pause slideshow
+KEYBINDINGS
+
+h  : pause slideshow.
+m  : show menu.
+<  : rotate image 90 degrees counterclockwise.
+>  : rotate image 90 degrees clockwise.
+_  : flip image vertically.
+|  : flip image horizontally.
