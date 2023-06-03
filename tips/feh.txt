@@ -3,17 +3,27 @@
 Play all images in a direcotory
 
 feh -D 5 -F -z directory
+feh -D 5 -B black -S mtime -dr -.
+feh -D5 -Borange -Smtime -dr.
+
 
 
 COMMAND LINE OPTIONS
 
--B colour: background colour for transparet areas
--D n : next image every n secs
--F   : full screen
--z   : randomize
--r   : recursively
+-B colour:
+-Bcolour : background colour for transparet areas
+-S mtime :
+-Smtime  : sort by modified time
+
+-D n :
+-Dn  : next image every n secs
+
 -.   : fit image to window
+-F   : full screen
 -d   : show filename
+-r   : recursively
+-z   : randomize
+
 
 
 IN APP
