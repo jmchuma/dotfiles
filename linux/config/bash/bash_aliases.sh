@@ -13,3 +13,5 @@ alias mv='mv -i'
 alias diff='diff -u'
 alias grep='grep --color=auto'
 alias python='python -t'
+
+alias poweroff='systemctl poweroff --now'
