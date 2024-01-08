@@ -1,4 +1,0 @@
-
-# nmcli --ask dev wifi connect net_name
-# or
-# nmcli dev wifi connect net_name password 'mypassword'
