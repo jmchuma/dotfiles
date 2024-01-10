@@ -1,0 +1,5 @@
+.headers on
+-- .mode column
+-- .mode markdown
+-- .mode table
+.mode box
