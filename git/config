@@ -1,7 +1,7 @@
 # DON'T FORGET TO ADD GITHUB INFO TO EACH REPO CONFIG
-[user]
-	name = ? Chumo Mata
-	email = jmchuma@gmail.com
+#[user]
+#	name = ____ Chumo Mata
+#	email = 273500+jmchuma@users.noreply.github.com
 [core]
 	editor = vim
 	pager = less -r
