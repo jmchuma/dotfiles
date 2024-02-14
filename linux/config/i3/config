@@ -32,10 +32,18 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-# no need for tabbed since I learned to use
-# the tabbed layout in i3
-#bindsym $mod+Return exec tabbed -c -r 2 st -w ''
-bindsym $mod+Return exec st
+# tabbed:
+# -c  close tabbed when the last tab is closed.
+# -p s+1
+#     start new tabs to the right of the current tab.
+#
+# st:
+# -w windowid
+#     embeds st within the window identified by windowid.
+#     tabbed automatically adds the window id to the end of the command so
+#     no need to do it explicitly.
+
+bindsym $mod+Return exec tabbed -c -p s+1 st -w
 
 # kill focused window
 bindsym $mod+Shift+q kill
