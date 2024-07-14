@@ -60,10 +60,12 @@ sudo apt upgrade
 
 # Get the basics
 # ----------------
+# network-manager for obvious reasons
 # vim: Nothing personal against vim.tiny. 
 # trash-cli: I know rm -i exists but I prefer to trash files
 # git: to use git in general, but right now to the the rest from Github.
-sudo apt install vim trash-cli git
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install network-manager vim trash-cli git
+sudo apt install network-manager vim trash-cli git
 # TODO move trash-cli and vim to another place
 # git goes here, then git checkout, then run script
 
