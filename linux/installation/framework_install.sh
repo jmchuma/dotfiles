@@ -1,12 +1,26 @@
 # This is a log of the commands I run after installing debian on my
-# AMD Framework Laptop
+# AMD Framework Laptop.
 
-## Some colors, because I like to have fun sometimes.
+# Some colors, because I like to have fun sometimes.
 LIGHT_GREEN='\033[1;32;4m'
 RESET_COLOR='\e[0m'
 
 
-# 0. ADD USER TO SUDOERS
+# On installation do not, I repeat DO NOT set a root password.
+# This prevents the creation of a root account.
+
+# Partition setup:
+# - EFI    550MiB
+#     + bootable partition
+# - /boot  500MiB
+# - /       50GiB
+#     + will contain a swapfile
+# - /var    16GiB
+# - /tmp     5GiB
+# - /home  :whatever is left:
+
+
+# -1. ADD USER TO SUDOERS
 # ==========================
 # If you set a root password during installation Debian doesn't add
 # the regular user to sudoers. As a matter of fact id doesn't even
