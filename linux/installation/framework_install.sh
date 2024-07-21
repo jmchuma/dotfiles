@@ -52,9 +52,9 @@ sudo echo "/swapfile        none        swap        sw        0        0" >> /et
 
 # TODO add the swapiness thing here
 
-# 3. SOFTWAARE
+# 3. SOFTWARE
 # ====================
-# update software
+# Update packages
 sudo apt update
 sudo apt upgrade
 
