@@ -22,25 +22,24 @@ RESET_COLOR='\e[0m'
 
 # -1. ADD USER TO SUDOERS
 # ==========================
-# If you set a root password during installation Debian doesn't add
-# the regular user to sudoers. As a matter of fact id doesn't even
-# install sudo. Since I don't want to log in as root everytime I need
-# a minor change...
+# If you set a root password during installation, Debian creates a root
+# user and doesn't add the regular user to sudoers. As a matter of fact,
+# it doesn't even install sudo. Since I don't want to log in as root
+# everytime I need a minor change…
 
-# Log in as root and
-# activate no clobber option explicitly. We want to avoid accidents!
+# Log in as root and activate no clobber option explicitly.
+# We want to avoid accidents!
 set -o noclobber
 # TODO have a ~/bashrc for root and save it at this point?
 
 # Install sudo
 apt install sudo
-# Add user to the sudoers grfoup
-# TODO read username
-#      check if exists
+# Add user to the sudoers group.
+# TODO Read currrent username.
+#      Given a user name, check if it exists.
 usermod -aG sudo [username]
 
-# logout from root
-# log in to regular user
+# Log out from root and log in to regular user.
 
 
 # 2. SWAP
