@@ -42,7 +42,18 @@ usermod -aG sudo [username]
 # Log out from root and log in to regular user.
 
 
-# 2. SWAP
+# Change the tty font.
+# I'll mostly be on X or Wayland. This is just in case something goes
+# south and I'm stuck on the tty for a while.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install fonts-terminus
+sudo apt install fonts-terminus
+
+printf "$UNDERLINE%s $LIGHT_GREEN%s %s$RESET_COLOR\n" sudo dpkg-reconfigure console-setup
+sudo dpkg-reconfigure console-setup
+# Choices: UTF-8  -->  Latin1 & Latin15  -->  TerminusBold  -->  14x28
+
+
+# 1. ADD SWAP FILE
 # ==============
 # Create swap file
 # In this case 8GiB since I have a lot of RAM and a lof of HD space
@@ -53,10 +64,10 @@ sudo dd if=/dev/zero of=/swapfile bs=1024 count=8388608
 # with it.
 sudo chmod 600 /swapfile
 
-# format the thing as swap
+# Format the thing as swap.
 sudo mkswap /swapfile
 
-# mount swap file
+# Mount swap file.
 sudo swapon /swapfile
 
 # add swap file info to /etc/fstp to load it automatically
