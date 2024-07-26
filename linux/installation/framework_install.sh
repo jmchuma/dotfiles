@@ -20,15 +20,17 @@ RESET_COLOR='\e[0m'
 # - /home  :whatever is left:
 
 
-# -1. ADD USER TO SUDOERS
-# ==========================
+# -1.
+# =========================
+#
+# ADD USER TO SUDOERS
+# -------------------------
 # If you set a root password during installation, Debian creates a root
 # user and doesn't add the regular user to sudoers. As a matter of fact,
 # it doesn't even install sudo. Since I don't want to log in as root
 # everytime I need a minor change…
 
-# Log in as root and activate no clobber option explicitly.
-# We want to avoid accidents!
+# Log in as root and activate no clobber. We want to avoid accidents!
 set -o noclobber
 # TODO have a ~/bashrc for root and save it at this point?
 
@@ -41,6 +43,10 @@ usermod -aG sudo [username]
 
 # Log out from root and log in to regular user.
 
+# GET FONT FOR TTY
+# -------------------------
+# Activate no clobber as regular user. We want to avoid accidents!
+set -o noclobber
 
 # Change the tty font.
 # I'll mostly be on X or Wayland. This is just in case something goes
@@ -52,9 +58,8 @@ printf "$UNDERLINE%s $LIGHT_GREEN%s %s$RESET_COLOR\n" sudo dpkg-reconfigure cons
 sudo dpkg-reconfigure console-setup
 # Choices: UTF-8  -->  Latin1 & Latin15  -->  TerminusBold  -->  14x28
 
-
-# 1. ADD SWAP FILE
-# ==============
+# ADD SWAP FILE
+# -----------------------------
 # Create swap file
 # In this case 8GiB since I have a lot of RAM and a lof of HD space
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=8388608
@@ -76,7 +81,8 @@ sudo echo "/swapfile        none        swap        sw        0        0" >> /et
 
 # TODO add the swapiness thing here
 
-# 3. SOFTWARE
+
+# 0. INSTALL PACKAGES
 # ====================
 # Update packages
 sudo apt update
