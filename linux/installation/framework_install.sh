@@ -88,17 +88,31 @@ sudo echo "/swapfile        none        swap        sw        0        0" >> /et
 sudo apt update
 sudo apt upgrade
 
-# Get the basics
-# ----------------
-# network-manager for obvious reasons
-# vim: Nothing personal against vim.tiny. 
-# trash-cli: I know rm -i exists but I prefer to trash files
-# git: to use git in general, but right now to the the rest from Github.
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install network-manager vim trash-cli git
-sudo apt install network-manager vim trash-cli git
-# TODO move trash-cli and vim to another place
-# git goes here, then git checkout, then run script
+# Get git
+# --------------------
+# I always have Git on my computers, but right now I need it to get
+# the rest of the config files from Github.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install git
+sudo apt install git
+# TODO
+#     - see how to continue from here
+#     - should this be in an easily accessible URL so I can get it
+#       and run it to complete the a full configuration?
 
+# SYSTEM TOOLS ESSENTIALS
+# -------------------
+# network-manager for obvious reasons
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install network-manager
+sudo apt install network-manager
+
+# CLI APPLICATIONS
+# -------------------
+# trash-cli: I know rm -i exists but I prefer to trash files.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install trash-cli
+sudo apt install trash-cli
+# vim: Nothing personal against vim.tiny.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install vim
+sudo apt install vim
 
 # Xorg
 # -------------------
