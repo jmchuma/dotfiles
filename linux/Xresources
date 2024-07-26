@@ -2,24 +2,59 @@
 ! This is here because of ranger
 !xterm*faceName: DejaVu Sans Mono Book
 !xterm*faceName: Courier Prime
-xterm*faceName: Share Tech Mono
-xterm*faceSize: 10
+!xterm*faceName: Share Tech Mono
+!xterm*faceSize: 10
+!
+!xterm*foreground: rgb:00/00/00
+!xterm*background: rgb:ff/ff/ff
+!*.color0: #1d2021
+!*.color1: #cc241d
+!*.color2: #98971a
+!*.color3: #d79921
+!*.color4: #458588
+!*.color5: #b16286
+!*.color6: #689d6a
+!*.color7: #a89984
+!*.color8: #928374
+!*.color9: #fb4934
+!*.color10: #b8bb26
+!*.color11: #fabd2f
+!*.color12: #83a598
+!*.color13: #d3869b
+!*.color14: #8ec07c
+!*.color15: #ebdbb2
+!
+!URxvt*.background:   #1F1D19
+URxvt*.background:   #1c1c1c
+URxvt*.foreground:   #dedede
 
-xterm*foreground: rgb:ff/ff/ff
-xterm*background: rgb:00/00/00
-*.color0: #1d2021
-*.color1: #cc241d
-*.color2: #98971a
-*.color3: #d79921
-*.color4: #458588
-*.color5: #b16286
-*.color6: #689d6a
-*.color7: #a89984
-*.color8: #928374
-*.color9: #fb4934
-*.color10: #b8bb26
-*.color11: #fabd2f
-*.color12: #83a598
-*.color13: #d3869b
-*.color14: #8ec07c
-*.color15: #ebdbb2
+URxvt*.font: xft:monospace:size=10
+
+URxvt*.boldColos: on
+
+! black
+URxvt*.color0:  #141414
+URxvt*.color8:  #5c585c
+! red
+URxvt*.color1:  #f54e00
+URxvt*.color9:  #ff0000
+! green
+URxvt*.color2:  #45ed6f
+URxvt*.color10: #00ff00
+! yellow
+URxvt*.color3:  #c4de50
+URxvt*.color11: #ddff00
+! blue
+URxvt*.color4:  #4756f5
+URxvt*.color12: #002bff
+! magenta
+URxvt*.color5:  #ee69fa
+URxvt*.color13: #ff00dd
+! cyan
+URxvt*.color6:  #6cf7eb
+URxvt*.color14: #07b099
+! white
+URxvt*.color7:  #d6d6d6
+URxvt*.color15: #ffffff
+
+Xft*dpi: 136
