@@ -105,6 +105,16 @@ sudo apt install git
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install network-manager
 sudo apt install network-manager
 
+# USEFUL COMMANDS
+# -------------------
+# Probably already installed.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install wget
+sudo apt install wget
+
+# I always end up having to install it because of a random script.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install curl
+sudo apt install curl
+
 # CLI APPLICATIONS
 # -------------------
 # trash-cli: I know rm -i exists but I prefer to trash files.
@@ -113,6 +123,9 @@ sudo apt install trash-cli
 # vim: Nothing personal against vim.tiny.
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install vim
 sudo apt install vim
+
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install yt-dlp
+sudo apt install yt-dlp # I use it indepdently of mpv
 
 # Xorg
 # -------------------
@@ -149,9 +162,8 @@ sudo apt install dunst # TODO configure dunst
 # alsa-utils (suggest dialog)
 # sysstat ()
 
-# 
-# provides import
-# used in i3 to take screenshots
+# I do not really use it directly, but it provides import, which I use
+# in i3 to take screenshots.
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" ssudo apt install imagemagick
 sudo apt install imagemagick
 
@@ -170,7 +182,6 @@ sudo apt install ranger
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install w3m
 sudo apt install w3m
 
-
 ## my usual suspects
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install ffmpeg
 sudo apt install ffmpeg
@@ -178,10 +189,10 @@ sudo apt install ffmpeg
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install mpv
 sudo apt install mpv
 # mpv recommends:
+# yt-dlp (previously installed by me in the terminal tools section)
+# xdg-utils
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install xdg-utils
 sudo apt install xdg-utils # i think i need it anyway. TODO further explore what it does
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install yt-dlp
-sudo apt install yt-dlp # i use it indepdently of mpv
 
 # Image viewer
 # I launch it too from ranger too.
@@ -195,13 +206,3 @@ sudo apt install mupdf
 # Suggests: mupdf-tools
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install mupdf-tools
 sudo apt install mupdf-tools
-
-## console stuff I use
-
-#probably already installed
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN %s $RESET_COLOR\n" sudo apt install wget
-sudo apt install wget
-
-# I always end up having to install it because of a random script
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN %s $RESET_COLOR\n" sudo apt install curl
-sudo apt install curl 
