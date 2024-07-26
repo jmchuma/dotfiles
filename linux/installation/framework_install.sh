@@ -84,7 +84,7 @@ sudo echo "/swapfile        none        swap        sw        0        0" >> /et
 
 # 0. INSTALL PACKAGES
 # ====================
-# Update packages
+# Update system.
 sudo apt update
 sudo apt upgrade
 
@@ -100,27 +100,29 @@ sudo apt install network-manager vim trash-cli git
 # git goes here, then git checkout, then run script
 
 
-## X Windows
+# Xorg
+# -------------------
 # I thought about doing the full installation like
 # sudo apt install xorg
-# but I decided to go minimal and just
-# install amdgpu driver. This also pull xserver-xorg-core
+# but I decided to go minimal and just install the amdgpu driver.
+# This also pulls xserver-xorg-core.
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install xserver-xorg-video-amdgpu
 sudo apt install xserver-xorg-video-amdgpu
 # Install xinit
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install i3lock
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install xinit
 sudo apt install xinit
 
-## i3 stuff
+# Window manager
 # i3 is a meta pacakge. The actual functionality is provided by i3-wm
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install i3-wm
 sudo apt install i3-wm
 # depends on
-#    i3status # TODO get insto this one
+#    i3status # TODO get into this one
 # recomends TODO are these worth it?
-# xfonts-base fonts-dejavu-core
+#    xfonts-base # already installed
+#    fonts-dejavu-core # already installed
 
-# i3 recommends
+# i3-wm recommends
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install i3lock
 sudo apt install i3lock # TODO configure i3lock
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install dunst
@@ -139,20 +141,18 @@ sudo apt install dunst # TODO configure dunst
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" ssudo apt install imagemagick
 sudo apt install imagemagick
 
-## rofi
-# app launcher
+# rofi: app launcher
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install rofi
 sudo apt install rofi
 
-## ranger
-# text based file manager
+# ranger: text based file manager
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install ranger
 sudo apt install ranger
 # sugests mupdf-tools. Will install with mupdf
 
-# suggests w3m, a www pager.
-# used by ranger to display images on its interface
-# may already be installed
+# ranger suggests: w3m, a www pager.
+# Used by ranger to display images on its interface.
+# May already be installed
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install w3m
 sudo apt install w3m
 
@@ -169,17 +169,17 @@ sudo apt install xdg-utils # i think i need it anyway. TODO further explore what
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install yt-dlp
 sudo apt install yt-dlp # i use it indepdently of mpv
 
-# image viewer
-# I launch it too from ranger use it to view images too.
+# Image viewer
+# I launch it too from ranger too.
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install feh
 sudo apt install feh
 
-## pdf viewwer
-# I use it to open pdf foiles directly from ranger too.
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN %s $RESET_COLOR\n" sudo apt install mupdf
+# PDF viewer
+# I use it to open pdf files directly from ranger too.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install mupdf
 sudo apt install mupdf
 # Suggests: mupdf-tools
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN %s $RESET_COLOR\n" sudo apt install mupdf-tools
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install mupdf-tools
 sudo apt install mupdf-tools
 
 ## console stuff I use
