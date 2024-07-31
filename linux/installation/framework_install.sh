@@ -107,6 +107,11 @@ sudo apt install network-manager
 
 # USEFUL COMMANDS
 # -------------------
+# psmisc
+# Provides killall and pstree among other things.
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install psmisc
+sudo apt install psmisc
+
 # Probably already installed.
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install wget
 sudo apt install wget
