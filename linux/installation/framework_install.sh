@@ -118,10 +118,10 @@ sudo apt install curl
 # CLI APPLICATIONS
 # -------------------
 # trash-cli: I know rm -i exists but I prefer to trash files.
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install trash-cli
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install trash-cli
 sudo apt install trash-cli
 # vim: Nothing personal against vim.tiny.
-printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s %s %s %s$RESET_COLOR\n" sudo apt install vim
+printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install vim
 sudo apt install vim
 
 printf "$UNDERLINE%s %s %s $LIGHT_GREEN%s$RESET_COLOR\n" sudo apt install yt-dlp
